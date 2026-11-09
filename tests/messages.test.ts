@@ -4,6 +4,7 @@ import { isEngineStatus } from '@/shared/engine-status';
 import {
   isEngineProbeResponse,
   isEngineStatusRequest,
+  isWebGpuDebugQuery,
   isModelCancelRequest,
   isModelDeleteRequest,
   isModelDownloadRequest,
@@ -94,6 +95,8 @@ describe('message validation', () => {
     expect(isEngineStatusRequest({ type: 'engine:status' })).toBe(true);
     expect(isEngineStatusRequest({ type: 'engine:status', extra: true })).toBe(true);
     expect(isEngineStatusRequest({ type: 'engine:probe' })).toBe(false);
+    expect(isWebGpuDebugQuery({ type: 'engine:webgpu-debug' })).toBe(true);
+    expect(isWebGpuDebugQuery({ type: 'engine:probe' })).toBe(false);
 
     expect(
       isEngineStatus({
