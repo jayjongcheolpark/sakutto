@@ -4,6 +4,7 @@ import {
   CHROME_SUPPORTED_LANGUAGES,
   canonicalLanguage,
   chooseTargetLanguage,
+  productPairTarget,
   resolvePageTarget,
   fromChromeLanguage,
   isChromeLanguage,
@@ -72,6 +73,27 @@ describe('Chrome translator languages', () => {
 });
 
 describe('default target language', () => {
+  it('defaults every UI to Korean', () => {
+    expect(productPairTarget('ko-KR')).toBe('ko');
+    expect(productPairTarget('en-US')).toBe('ko');
+    expect(productPairTarget('ja')).toBe('ko');
+    expect(productPairTarget('fr')).toBe('ko');
+    expect(productPairTarget('')).toBe('ko');
+  });
+
+  it('sends every detected source to Korean, and Korean to English', () => {
+    expect(chooseTargetLanguage('ja', 'ko', false)).toBe('ko');
+    expect(chooseTargetLanguage('de', 'ko', false)).toBe('ko');
+    expect(chooseTargetLanguage('fr-FR', 'ko', false)).toBe('ko');
+    expect(chooseTargetLanguage('zh-Hans', 'ko', false)).toBe('ko');
+    expect(chooseTargetLanguage('en', 'ko', false)).toBe('ko');
+    expect(chooseTargetLanguage('ko', 'ko', false)).toBe('en');
+    expect(chooseTargetLanguage('ko-KR', 'ko', false)).toBe('en');
+    expect(chooseTargetLanguage(null, 'ko', false)).toBe('ko');
+    // A page tag the model does not know stays on the preferred target.
+    expect(chooseTargetLanguage('pt', 'ko', false)).toBe('ko');
+  });
+
   it('flips Korean and English when the page already matches the preference', () => {
     expect(chooseTargetLanguage('en', 'en', false)).toBe('ko');
     expect(chooseTargetLanguage('en-US', 'en', false)).toBe('ko');

@@ -754,7 +754,7 @@
     }
   },
   "typedDirectionHint": {
-    "message": "Dịch sang $LANGUAGE$. Các ngôn ngữ khác được phát hiện tự động.",
+    "message": "Dịch sang $LANGUAGE$. Ngôn ngữ nguồn được nhận dạng tự động.",
     "placeholders": {
       "language": {
         "content": "$1"
@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "Khi ô tin nhắn đang được chọn, nút 한A (hoặc phím tắt) xem trước bản dịch. Bản nháp tiếng Hàn sang tiếng Anh (hoặc ngôn ngữ đích ở trên); các bản khác dùng ngôn ngữ đó. Không gì bị thay cho đến khi bạn chọn Thay thế."
+    "message": "Khi ô tin nhắn đang được chọn, nút 한A (hoặc phím tắt) xem trước bản dịch. Bản nháp ở mọi ngôn ngữ dùng ngôn ngữ đích ở trên; mặc định là tiếng Hàn. Bản nháp tiếng Hàn sang tiếng Anh khi đích đó là tiếng Hàn. Không gì bị thay cho đến khi bạn chọn Thay thế."
   },
   "composeTitle": {
     "message": "Bản dịch bản nháp"
@@ -915,7 +915,7 @@
     "message": "Ngôn ngữ đích khi soạn"
   },
   "composeTargetAuto": {
-    "message": "Tự động (bản nháp tiếng Hàn sang ngôn ngữ kia của cặp; còn lại theo ngôn ngữ trang)"
+    "message": "Tự động (mọi ngôn ngữ dùng ngôn ngữ đích của trang; tiếng Hàn sang tiếng Anh khi đích đó là tiếng Hàn)"
   },
   "composeTargetSettingHelp": {
     "message": "Ngôn ngữ vừa chọn trong bản xem trước được nhớ ở đây."

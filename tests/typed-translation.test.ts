@@ -22,15 +22,47 @@ describe('typed translation direction', () => {
     expect(planTypedTranslation('en').other).toBe('ko');
   });
 
+  it('sends a detected model language as the source and keeps the Korean target', () => {
+    const japanese = planTypedTranslation('ko', '明日の会議は十時です。');
+    expect(japanese).toMatchObject({
+      sourceLanguage: 'ja',
+      targetLanguage: 'ko',
+      other: 'en',
+    });
+    const chinese = planTypedTranslation('ko', '今天天气很好。');
+    expect(chinese.sourceLanguage).toBe('zh-hans');
+    expect(chinese.targetLanguage).toBe('ko');
+  });
+
+  it('sends Korean text to English when the saved target is Korean', () => {
+    expect(planTypedTranslation('ko', '안녕하세요, 회의는 내일입니다.')).toMatchObject({
+      sourceLanguage: 'ko',
+      targetLanguage: 'en',
+      other: 'ko',
+    });
+  });
+
+  it('keeps an English target for Korean text', () => {
+    expect(planTypedTranslation('en', '감사합니다.')).toMatchObject({
+      sourceLanguage: 'ko',
+      targetLanguage: 'en',
+      other: 'ko',
+    });
+  });
+
   /**
-   * The source is deliberately unset. PLaMo translates a paragraph without being told which
-   * language it is in, and a guess here would be a second place to be wrong when a user
-   * pastes a language the picker never offered.
+   * Latin letters do not name one language. The target is still sent, and the source
+   * stays unset so a German paragraph is not labeled English.
    */
-  it('never guesses the source language', () => {
-    for (const target of ['ko', 'en', 'zh-hans', 'de'] as const) {
-      expect(planTypedTranslation(target).sourceLanguage).toBeNull();
-    }
+  it('does not guess a source for Latin text', () => {
+    expect(planTypedTranslation('ko', 'See you tomorrow.')).toMatchObject({
+      sourceLanguage: null,
+      targetLanguage: 'ko',
+    });
+    expect(planTypedTranslation('ko', 'Guten Morgen, wir treffen uns morgen.')).toMatchObject({
+      sourceLanguage: null,
+      targetLanguage: 'ko',
+    });
   });
 
   it('falls back to Korean for a value that is not a target language', () => {

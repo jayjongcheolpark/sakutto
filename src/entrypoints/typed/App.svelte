@@ -47,8 +47,8 @@
   let abortController = $state<AbortController | null>(null);
 
   let targetLanguage = $derived<TargetLanguage>(settings?.targetLanguage ?? PRIMARY_PAIR_TARGET);
-  let plan = $derived(planTypedTranslation(targetLanguage));
   let trimmed = $derived(normalizeTypedInput(sourceText));
+  let plan = $derived(planTypedTranslation(targetLanguage, trimmed));
   let tooLong = $derived(trimmed.length > MAX_TYPED_CHARS);
   let readiness = $derived<TypedReadiness>(
     typedReadiness({
@@ -57,11 +57,11 @@
       plamoReady: engineStatus?.plamoReady ?? false,
     }),
   );
-  let chromeOnlyTarget = $derived(isChromeOnlyLanguage(targetLanguage));
+  let chromeOnlyTarget = $derived(isChromeOnlyLanguage(plan.targetLanguage));
   let canTranslate = $derived(
     !translating && trimmed.length > 0 && !tooLong && !chromeOnlyTarget && readiness === 'ready',
   );
-  let targetLabel = $derived(displayLanguage(targetLanguage, uiLanguage));
+  let targetLabel = $derived(displayLanguage(plan.targetLanguage, uiLanguage));
   let hasAnything = $derived(sourceText.length > 0 || result.length > 0);
 
   async function refreshEngine() {
@@ -118,10 +118,11 @@
     try {
       const segments = [{ id: 'typed', text: trimmed }];
       for await (const chunk of typedEngine.translate(segments, {
-        tgt: targetLanguage,
+        tgt: plan.targetLanguage,
         form: settings?.form ?? 'polite',
         priority: 0,
         signal: controller.signal,
+        ...(plan.sourceLanguage ? { src: plan.sourceLanguage } : {}),
         ...(settings && settings.glossary.length > 0 ? { glossary: settings.glossary } : {}),
       })) {
         if (chunk.textDelta !== undefined) {
@@ -333,7 +334,7 @@
         {:else if resultError}
           <p class="error note" role="alert">{t('typedFailed')}</p>
         {:else if result.trim().length > 0}
-          <output class="result" lang={targetLanguage} aria-labelledby="typed-result-title"
+          <output class="result" lang={plan.targetLanguage} aria-labelledby="typed-result-title"
             >{result}</output
           >
         {:else}

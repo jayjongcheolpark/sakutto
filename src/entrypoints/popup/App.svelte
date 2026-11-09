@@ -29,7 +29,12 @@
     subscribeSiteRules,
     type SiteRule,
   } from '@/dom/sites';
-  import { isChromeOnlyLanguage, resolvePageTarget, type TargetLanguage } from '@/shared/languages';
+  import {
+    DEFAULT_TARGET_LANGUAGE,
+    isChromeOnlyLanguage,
+    resolvePageTarget,
+    type TargetLanguage,
+  } from '@/shared/languages';
   import { advanceModelStatus } from '@/shared/model-progress';
   import { openShortcutEditor } from '@/shared/shortcut-editor';
   import {
@@ -104,7 +109,9 @@
     return shortcut.length > 0 ? displayShortcut(shortcut) : t('shortcutUnset');
   }
 
-  let storedTarget = $derived(rule?.targetLanguage ?? settings?.targetLanguage ?? 'en');
+  let storedTarget = $derived(
+    rule?.targetLanguage ?? settings?.targetLanguage ?? DEFAULT_TARGET_LANGUAGE,
+  );
   let targetLanguage = $derived(
     resolvePageTarget(view?.pageLanguage ?? null, storedTarget, rule?.targetLanguage !== undefined),
   );

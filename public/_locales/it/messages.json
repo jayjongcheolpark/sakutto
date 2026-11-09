@@ -754,7 +754,7 @@
     }
   },
   "typedDirectionHint": {
-    "message": "Si traduce in $LANGUAGE$. Altri linguaggi vengono rilevati automaticamente.",
+    "message": "Traduce in $LANGUAGE$. La lingua di partenza viene rilevata automaticamente.",
     "placeholders": {
       "language": {
         "content": "$1"
@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "Quando una casella di messaggio ha il focus, il pulsante 한A (o la scorciatoia) mostra un’anteprima della traduzione. Le bozze in coreano vanno in inglese (o nella lingua di destinazione sopra); le altre usano quella destinazione. Nulla viene sostituito finché non scegli Sostituisci."
+    "message": "Quando una casella di messaggio ha il focus, il pulsante 한A (o la scorciatoia) mostra un’anteprima della traduzione. Le bozze in qualsiasi lingua usano la destinazione sopra; il valore predefinito è il coreano. Le bozze in coreano vanno in inglese quando quella destinazione è il coreano. Nulla viene sostituito finché non scegli Sostituisci."
   },
   "composeTitle": {
     "message": "Traduzione della bozza"
@@ -915,7 +915,7 @@
     "message": "Lingua di destinazione in scrittura"
   },
   "composeTargetAuto": {
-    "message": "Automatico (le bozze in coreano vanno all’altra lingua della coppia; il resto alla lingua della pagina)"
+    "message": "Automatico (qualsiasi lingua usa la destinazione della pagina; il coreano va in inglese se quella destinazione è il coreano)"
   },
   "composeTargetSettingHelp": {
     "message": "La lingua scelta nell’anteprima viene ricordata qui."

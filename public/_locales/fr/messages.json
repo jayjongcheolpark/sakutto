@@ -754,7 +754,7 @@
     }
   },
   "typedDirectionHint": {
-    "message": "Traduit en $LANGUAGE$. D'autres langues sont détectées automatiquement.",
+    "message": "Traduit vers $LANGUAGE$. La langue source est détectée automatiquement.",
     "placeholders": {
       "language": {
         "content": "$1"
@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "Lorsqu’une zone de message a le focus, le bouton 한A (ou le raccourci) affiche un aperçu de la traduction. Les brouillons coréens vont vers l’anglais (ou vers la langue cible ci-dessus) ; les autres utilisent cette langue cible. Rien n’est remplacé tant que vous ne choisissez pas Remplacer."
+    "message": "Lorsqu’une zone de message a le focus, le bouton 한A (ou le raccourci) affiche un aperçu de la traduction. Les brouillons dans n’importe quelle langue utilisent la cible ci-dessus ; la valeur par défaut est le coréen. Les brouillons coréens vont vers l’anglais lorsque cette cible est le coréen. Rien n’est remplacé tant que vous ne choisissez pas Remplacer."
   },
   "composeTitle": {
     "message": "Traduction du brouillon"
@@ -915,7 +915,7 @@
     "message": "Langue cible de la rédaction"
   },
   "composeTargetAuto": {
-    "message": "Auto (les brouillons coréens vont vers l’autre langue de la paire ; sinon la langue de la page)"
+    "message": "Auto (toute langue utilise la cible de la page ; le coréen va vers l’anglais quand cette cible est le coréen)"
   },
   "composeTargetSettingHelp": {
     "message": "La langue choisie dans l’aperçu est mémorisée ici."

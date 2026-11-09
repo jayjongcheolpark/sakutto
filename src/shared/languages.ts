@@ -56,9 +56,10 @@ export const SUPPORTED_LANGUAGES = [
 
 export type LanguageCode = (typeof SUPPORTED_LANGUAGES)[number];
 
-export const DEFAULT_TARGET_LANGUAGE: LanguageCode = 'en';
+/** Used when a stored preference is not a model language. This fork translates into Korean. */
+export const DEFAULT_TARGET_LANGUAGE: LanguageCode = 'ko';
 
-/** The two languages this fork offers in the picker and as the default pair. */
+/** The two languages this fork offers in the picker. The source may be any model language. */
 export const PRODUCT_PAIR_LANGUAGES = ['ko', 'en'] as const;
 
 export type ProductPairLanguage = (typeof PRODUCT_PAIR_LANGUAGES)[number];
@@ -219,16 +220,21 @@ export function resolveTargetLanguage(
 }
 
 /**
- * Default target for this fork. A Korean UI translates into Korean. Every other UI
- * translates into English. A stored setting can still name any model language.
+ * Default target for this fork. Every UI translates into Korean. A stored setting can
+ * still name English, or any model language kept from an older record.
+ *
+ * The browser UI language is accepted so callers can keep passing it. It does not
+ * choose the target.
  */
 export function productPairTarget(uiLanguage: string): ProductPairLanguage {
-  return canonicalLanguage(uiLanguage) === 'ko' ? 'ko' : 'en';
+  void uiLanguage;
+  return 'ko';
 }
 
 /**
- * When the page is already in the preferred language, pick the other side of the
- * Korean–English pair so the first translation is not a no-op. An explicit site choice wins.
+ * Target for a detected source. The preferred target is used for every source language.
+ * When the page is already in that language, the target flips between Korean and English
+ * so the first translation is not a no-op. An explicit site choice wins.
  */
 export function chooseTargetLanguage(
   pageLanguage: string | null,
