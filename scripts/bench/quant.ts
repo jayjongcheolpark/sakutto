@@ -31,27 +31,27 @@ interface SampleResult {
 }
 
 const SAMPLES: readonly Sample[] = [
-  { id: 'ui', src: 'en', tgt: 'ja', text: 'Sign in to continue' },
-  { id: 'name-year', src: 'en', tgt: 'ja', text: 'Ada Lovelace was born in 1815.' },
-  { id: 'url', src: 'en', tgt: 'ja', text: 'See https://example.com/docs/start for the guide.' },
-  { id: 'code', src: 'en', tgt: 'ja', text: 'Run npm install, then open src/app.ts.' },
+  { id: 'ui', src: 'en', tgt: 'ko', text: 'Sign in to continue' },
+  { id: 'name-year', src: 'en', tgt: 'ko', text: 'Ada Lovelace was born in 1815.' },
+  { id: 'url', src: 'en', tgt: 'ko', text: 'See https://example.com/docs/start for the guide.' },
+  { id: 'code', src: 'en', tgt: 'ko', text: 'Run npm install, then open src/app.ts.' },
   {
     id: 'instruction',
     src: 'en',
-    tgt: 'ja',
+    tgt: 'ko',
     text: 'Please take a numbered ticket and wait by the east gate.',
   },
-  { id: 'paragraph', src: 'en', tgt: 'ja', text: QUALITY_PARAGRAPH },
+  { id: 'paragraph', src: 'en', tgt: 'ko', text: QUALITY_PARAGRAPH },
   {
-    id: 'ja-en',
-    src: 'ja',
+    id: 'ko-en',
+    src: 'ko',
     tgt: 'en',
-    text: '図書館は9時に開きます。東門は本日閉鎖です。',
+    text: '도서관은 9시에 엽니다. 동쪽 문은 오늘 닫혀 있습니다.',
   },
   {
     id: 'ambiguous',
     src: 'en',
-    tgt: 'ja',
+    tgt: 'ko',
     text: 'The crane lifted the crane from the river.',
   },
 ];

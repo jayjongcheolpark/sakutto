@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "Cuando un cuadro de mensaje tiene el foco, el botón あA (o el atajo) muestra una vista previa de la traducción. Los borradores en japonés van al inglés (o al idioma de destino de arriba); los demás usan ese destino. Nada se reemplaza hasta que elijas Reemplazar."
+    "message": "Cuando un cuadro de mensaje tiene el foco, el botón 한A (o el atajo) muestra una vista previa de la traducción. Los borradores en coreano van al inglés (o al idioma de destino de arriba); los demás usan ese destino. Nada se reemplaza hasta que elijas Reemplazar."
   },
   "composeTitle": {
     "message": "Traducción del borrador"
@@ -906,7 +906,7 @@
     }
   },
   "composeIconSetting": {
-    "message": "Mostrar el botón あA en los cuadros de mensaje"
+    "message": "Mostrar el botón 한A en los cuadros de mensaje"
   },
   "composeIconSettingHelp": {
     "message": "El atajo y el menú contextual siguen funcionando si el botón está oculto."
@@ -915,7 +915,7 @@
     "message": "Idioma de destino al redactar"
   },
   "composeTargetAuto": {
-    "message": "Automático (los borradores en japonés van al otro idioma del par; el resto, al idioma de la página)"
+    "message": "Automático (los borradores en coreano van al otro idioma del par; el resto, al idioma de la página)"
   },
   "composeTargetSettingHelp": {
     "message": "El idioma que elija en la vista previa se recuerda aquí."

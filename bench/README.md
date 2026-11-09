@@ -32,6 +32,7 @@ use the popup) with the unpacked extension loaded.
 - `bench/pages/model-card-sidebar.html`
 - `bench/pages/mixed-ui.html`
 - `bench/pages/headline-in-header.html`
+- `bench/pages/korean-article.html` — Korean prose, aimed at English
 - `bench/pages/late-mount-spa.html`
 
 | Page                             | Pattern                                                                                                  | Bottleneck it isolates                                                                                                                                                           |
@@ -62,7 +63,7 @@ because branded Chrome refuses `--load-extension`.
 
 ```sh
 pnpm bench:build:mock      # fake in-page translator, no wasm/model needed
-pnpm bench:mock            # ~1 min for all eight pages
+pnpm bench:mock            # ~1 min for all nine pages
 pnpm bench:mock --only long-article
 pnpm bench:mock --samples 3
 ```
@@ -204,7 +205,7 @@ are slow enough to be flaky on shared runners.
 
 ## Adding a fixture
 
-1. Write a standalone HTML file in `bench/pages/` with `<html lang="en">`, no external requests.
+1. Write a standalone HTML file in `bench/pages/` with `<html lang="en">` (or `lang="ko"` for a Korean source page), no external requests.
 2. Mark the blocks to follow with `data-bench-id` and `data-bench="prose|heading|ui|code"`. Put the
    attributes on the element the extension translates (a `<p>`, `<li>`, `<h2>`), not on a `<span>`
    inside it; the recorder also resolves an owning block, but a real block keeps the numbers exact.
@@ -227,7 +228,7 @@ A live run needs the wasm build from `pnpm build:wllama` and the model in `bench
 `pnpm bench:live` on a machine that has both to add another line.
 
 An automatic comparison only considers a run with the **same mode and the same set of fixtures**. A `--only long-article` run is not put next to a
-eight-page run, and a live run is not put next to the mock baseline; in both cases the bench says
+nine-page run, and a live run is not put next to the mock baseline; in both cases the bench says
 there is nothing to compare rather than printing a delta. `--baseline` / `--compare` still compare
 whatever you name, and the summary prints a warning when that pair spans modes.
 

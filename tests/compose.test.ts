@@ -90,7 +90,7 @@ function clickPanel(label: string): void {
 }
 
 const defaultPrefs: ComposePreferences = {
-  targetLanguage: 'ja',
+  targetLanguage: 'ko',
   form: 'polite',
   enabled: true,
   uiLanguage: 'en',
@@ -135,13 +135,13 @@ describe('compose controller', () => {
     const controller = start();
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     expect(field.value).toBe('See you tomorrow.');
 
     clickPanel('Replace');
     await vi.waitFor(() => {
-      expect(field.value).toBe('§ja§See you tomorrow.');
+      expect(field.value).toBe('§ko§See you tomorrow.');
     });
     expect(panelText()).toContain('Replaced');
 
@@ -159,18 +159,18 @@ describe('compose controller', () => {
     const controller = start();
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     expect(panelText()).toContain('Alt+T');
     expect(panelButton('Replace').textContent).toBe('Replace');
     await new Promise((resolve) => setTimeout(resolve, 220));
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(field.value).toBe('§ja§See you tomorrow.');
+      expect(field.value).toBe('§ko§See you tomorrow.');
     });
     controller.handleShortcut();
     expect(panelButton('Restore original').disabled).toBe(false);
-    expect(field.value).toBe('§ja§See you tomorrow.');
+    expect(field.value).toBe('§ko§See you tomorrow.');
   });
 
   it('replaces with Ctrl+Enter in the field while the preview is open', async () => {
@@ -183,7 +183,7 @@ describe('compose controller', () => {
       new KeyboardEvent('keydown', { key: 't', altKey: true, code: 'KeyT', bubbles: true }),
     );
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     field.dispatchEvent(
       new KeyboardEvent('keydown', {
@@ -194,7 +194,7 @@ describe('compose controller', () => {
       }),
     );
     await vi.waitFor(() => {
-      expect(field.value).toBe('§ja§See you tomorrow.');
+      expect(field.value).toBe('§ko§See you tomorrow.');
     });
   });
 
@@ -206,7 +206,7 @@ describe('compose controller', () => {
     const controller = start();
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     field.dispatchEvent(
       new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true }),
@@ -241,7 +241,7 @@ describe('compose controller', () => {
     expect(field.value).toBe('See you tomorrow.');
     release?.();
     await vi.waitFor(() => {
-      expect(field.value).toBe('§ja§See you tomorrow.');
+      expect(field.value).toBe('§ko§See you tomorrow.');
     });
   });
 
@@ -253,7 +253,7 @@ describe('compose controller', () => {
     const controller = start(undefined, { instantReplace: true });
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(field.value).toBe('§ja§See you tomorrow.');
+      expect(field.value).toBe('§ko§See you tomorrow.');
     });
     expect(panelButton('Restore original').disabled).toBe(false);
   });
@@ -276,7 +276,7 @@ describe('compose controller', () => {
     controllers.push(controller);
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     const select = composeShadow(document.querySelector('sakutto-compose'))?.querySelector(
       'select.target',
@@ -311,12 +311,12 @@ describe('compose controller', () => {
     const controller = start(engine);
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     expect(calls).toBe(1);
     clickPanel('Replace');
     await vi.waitFor(() => {
-      expect(field.value).toBe('§ja§See you tomorrow.');
+      expect(field.value).toBe('§ko§See you tomorrow.');
     });
     await new Promise((resolve) => setTimeout(resolve, 40));
     expect(calls).toBe(1);
@@ -331,11 +331,11 @@ describe('compose controller', () => {
     const controller = start();
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     clickPanel('Replace');
     await vi.waitFor(() => {
-      expect(field.value).toBe('§ja§See you tomorrow.');
+      expect(field.value).toBe('§ko§See you tomorrow.');
     });
     field.value = `${field.value} Extra.`;
     field.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertText' }));
@@ -354,21 +354,21 @@ describe('compose controller', () => {
     const controller = start();
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     clickPanel('Replace');
     await vi.waitFor(() => {
-      expect(field.value).toBe('§ja§See you tomorrow.');
+      expect(field.value).toBe('§ko§See you tomorrow.');
     });
     field.value = '';
     field.dispatchEvent(
       new InputEvent('input', { bubbles: true, inputType: 'deleteContentBackward' }),
     );
     expect((document.querySelector('sakutto-compose') as HTMLElement).hidden).toBe(false);
-    field.value = '会議は明日です。';
+    field.value = '회의는 내일입니다.';
     field.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertText' }));
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§en§会議は明日です。');
+      expect(panelText()).toContain('§en§회의는 내일입니다.');
     });
   });
 
@@ -378,7 +378,7 @@ describe('compose controller', () => {
     if (!(field instanceof HTMLTextAreaElement)) throw new Error('missing textarea');
     field.focus();
     const controller = start();
-    for (const draft of ['Hello.', 'Hello there.', '会議は明日です。']) {
+    for (const draft of ['Hello.', 'Hello there.', '회의는 내일입니다.']) {
       field.value = draft;
       field.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertText' }));
       if ((document.querySelector('sakutto-compose') as HTMLElement).hidden) {
@@ -389,24 +389,24 @@ describe('compose controller', () => {
       });
       clickPanel('Replace');
       await vi.waitFor(() => {
-        expect(field.value).toMatch(new RegExp(`§(?:ja|en)§${draft.replace('.', '\\.')}`));
+        expect(field.value).toMatch(new RegExp(`§(?:ko|en)§${draft.replace('.', '\\.')}`));
       });
     }
   });
 
   it('resumes preview on a contenteditable after Replace leaves the translation selected', async () => {
-    document.body.innerHTML = '<div id="box" contenteditable="true">会議は明日です。</div>';
+    document.body.innerHTML = '<div id="box" contenteditable="true">회의는 내일입니다.</div>';
     const field = document.querySelector('#box');
     if (!(field instanceof HTMLElement)) throw new Error('missing editor');
     field.focus();
     const controller = start();
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§en§会議は明日です。');
+      expect(panelText()).toContain('§en§회의는 내일입니다.');
     });
     clickPanel('Replace');
     await vi.waitFor(() => {
-      expect(field.textContent).toContain('§en§会議は明日です。');
+      expect(field.textContent).toContain('§en§회의는 내일입니다.');
     });
     const range = document.createRange();
     range.selectNodeContents(field);
@@ -428,7 +428,7 @@ describe('compose controller', () => {
     const controller = controllers[0]!;
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     field.value = 'See you tomorrow. Extra.';
     field.dispatchEvent(new InputEvent('input', { bubbles: true }));
@@ -560,7 +560,7 @@ describe('compose controller', () => {
     const editor = document.createElement('div');
     editor.contentEditable = 'true';
     editor.setAttribute('role', 'textbox');
-    let value = '会議は明日です';
+    let value = '회의는 내일입니다';
     let beforeCount = 0;
     const render = (): void => {
       editor.textContent = value;
@@ -593,20 +593,20 @@ describe('compose controller', () => {
     await vi.waitFor(() => {
       expect(panelText()).toContain('§en§');
     });
-    expect(value).toBe('会議は明日です');
+    expect(value).toBe('회의는 내일입니다');
     clickPanel('Replace');
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(value).toBe('§en§会議は明日です');
+      expect(value).toBe('§en§회의는 내일입니다');
     });
     expect(beforeCount).toBe(1);
     clickPanel('Restore original');
     await vi.waitFor(() => {
-      expect(value).toBe('会議は明日です');
+      expect(value).toBe('회의는 내일입니다');
     });
     expect(panelButton('Restore original').disabled).toBe(true);
     clickPanel('Restore original');
-    expect(value).toBe('会議は明日です');
+    expect(value).toBe('회의는 내일입니다');
     expect(beforeCount).toBe(2);
   });
 
@@ -631,7 +631,7 @@ describe('compose controller', () => {
     const controller = start();
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     const host = document.querySelector('sakutto-compose');
     host?.dispatchEvent(new CustomEvent('sakutto-compose-action', { detail: 'replace' }));
@@ -648,11 +648,11 @@ describe('compose controller', () => {
     const controller = start();
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§Hello');
+      expect(panelText()).toContain('§ko§Hello');
     });
     clickPanel('Replace');
     await vi.waitFor(() => {
-      expect(field.value).toBe('§ja§Hello world extra');
+      expect(field.value).toBe('§ko§Hello world extra');
     });
     clickPanel('Restore original');
     await vi.waitFor(() => {
@@ -684,7 +684,7 @@ describe('compose controller', () => {
     expect(panelButton('Open setup').classList.contains('visible')).toBe(false);
     controller.setPreferences({ ...defaultPrefs, readiness: 'ready' });
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     expect(calls).toBe(1);
   });
@@ -744,7 +744,7 @@ describe('compose controller', () => {
     const controller = start();
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     field.value = '';
     field.dispatchEvent(new InputEvent('input', { bubbles: true }));
@@ -769,7 +769,7 @@ describe('compose controller', () => {
   });
 
   it('uses a language chip and an undo toast after replace', async () => {
-    document.body.innerHTML = '<textarea id="box">会議は明日です。</textarea>';
+    document.body.innerHTML = '<textarea id="box">회의는 내일입니다.</textarea>';
     const field = document.querySelector('#box');
     if (!(field instanceof HTMLTextAreaElement)) throw new Error('missing textarea');
     field.focus();
@@ -778,12 +778,12 @@ describe('compose controller', () => {
     await vi.waitFor(() => {
       expect(panelText()).toContain('§en§');
     });
-    expect(panelText()).toContain('JA → EN');
+    expect(panelText()).toContain('KO → EN');
     expect(panelText()).toContain('Alt+T / Ctrl+Enter to replace');
     expect(panelCard().classList.contains('undo')).toBe(false);
     clickPanel('Replace');
     await vi.waitFor(() => {
-      expect(field.value).toBe('§en§会議は明日です。');
+      expect(field.value).toBe('§en§회의는 내일입니다.');
     });
     expect(panelCard().classList.contains('undo')).toBe(true);
     expect(panelButton('Restore original').disabled).toBe(false);
@@ -792,7 +792,7 @@ describe('compose controller', () => {
 
   it('follows a dark field with a dark compose bar', async () => {
     document.body.innerHTML =
-      '<div style="background:#313338;color:#f2f3f5"><textarea id="box" style="background:#383a40;color:#f2f3f5">会議は明日です。</textarea></div>';
+      '<div style="background:#313338;color:#f2f3f5"><textarea id="box" style="background:#383a40;color:#f2f3f5">회의는 내일입니다.</textarea></div>';
     const field = document.querySelector('#box');
     if (!(field instanceof HTMLTextAreaElement)) throw new Error('missing textarea');
     field.focus();
@@ -835,7 +835,7 @@ describe('compose controller', () => {
     const controller = start();
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     field.value = '';
     field.dispatchEvent(
@@ -963,7 +963,7 @@ describe('compose controller', () => {
     const controller = start();
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     const shadow = composeShadow(document.querySelector('sakutto-compose'));
     const handle = shadow?.querySelector('.handle');
@@ -994,7 +994,7 @@ describe('compose controller', () => {
       new KeyboardEvent('keydown', { key: 't', altKey: true, code: 'KeyT', bubbles: true }),
     );
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     const host = document.querySelector('sakutto-compose');
     if (!(host instanceof HTMLElement)) throw new Error('missing panel');
@@ -1042,7 +1042,7 @@ describe('compose controller', () => {
     const controller = start();
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     expect(document.activeElement).toBe(field);
     const handle = composeShadow(document.querySelector('sakutto-compose'))?.querySelector(
@@ -1074,7 +1074,7 @@ describe('compose controller', () => {
     const controller = start();
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     const host = document.querySelector('sakutto-compose');
     if (!(host instanceof HTMLElement)) throw new Error('missing panel');
@@ -1108,7 +1108,7 @@ describe('compose controller', () => {
     const controller = start();
     controller.handleShortcut();
     await vi.waitFor(() => {
-      expect(panelText()).toContain('§ja§See you tomorrow.');
+      expect(panelText()).toContain('§ko§See you tomorrow.');
     });
     const shadow = composeShadow(document.querySelector('sakutto-compose'));
     const more = shadow?.querySelector('.more');

@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "While a message box is focused, the あA button (or the shortcut) previews a translation of what you are typing. Japanese drafts go to English (or to the target language above); other drafts use that target. Nothing is replaced until you choose Replace."
+    "message": "While a message box is focused, the 한A button (or the shortcut) previews a translation of what you are typing. Korean drafts go to English (or to the target language above); other drafts use that target. Nothing is replaced until you choose Replace."
   },
   "composeTitle": {
     "message": "Draft translation"
@@ -906,7 +906,7 @@
     }
   },
   "composeIconSetting": {
-    "message": "Show the あA button on message boxes"
+    "message": "Show the 한A button on message boxes"
   },
   "composeIconSettingHelp": {
     "message": "The shortcut and the right-click menu still work when the button is hidden."
@@ -915,7 +915,7 @@
     "message": "Draft translation target"
   },
   "composeTargetAuto": {
-    "message": "Auto (Japanese drafts go to the other language of the pair; otherwise the page target)"
+    "message": "Auto (Korean drafts go to the other language of the pair; otherwise the page target)"
   },
   "composeTargetSettingHelp": {
     "message": "The language you last picked in the compose preview is remembered here."

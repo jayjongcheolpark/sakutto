@@ -58,6 +58,11 @@ export type LanguageCode = (typeof SUPPORTED_LANGUAGES)[number];
 
 export const DEFAULT_TARGET_LANGUAGE: LanguageCode = 'en';
 
+/** The two languages this fork offers in the picker and as the default pair. */
+export const PRODUCT_PAIR_LANGUAGES = ['ko', 'en'] as const;
+
+export type ProductPairLanguage = (typeof PRODUCT_PAIR_LANGUAGES)[number];
+
 const SUPPORTED_SET: ReadonlySet<string> = new Set(SUPPORTED_LANGUAGES);
 
 export const CHROME_ONLY_LANGUAGES = [
@@ -214,8 +219,16 @@ export function resolveTargetLanguage(
 }
 
 /**
+ * Default target for this fork. A Korean UI translates into Korean. Every other UI
+ * translates into English. A stored setting can still name any model language.
+ */
+export function productPairTarget(uiLanguage: string): ProductPairLanguage {
+  return canonicalLanguage(uiLanguage) === 'ko' ? 'ko' : 'en';
+}
+
+/**
  * When the page is already in the preferred language, pick the other side of the
- * main pair so the first translation is not a no-op. An explicit site choice wins.
+ * Korean–English pair so the first translation is not a no-op. An explicit site choice wins.
  */
 export function chooseTargetLanguage(
   pageLanguage: string | null,
@@ -226,7 +239,7 @@ export function chooseTargetLanguage(
   if (explicit) return target;
   const page = pageLanguage ? canonicalLanguage(pageLanguage) : null;
   if (!page || page !== target) return target;
-  return target === 'ja' ? 'en' : 'ja';
+  return target === 'ko' ? 'en' : 'ko';
 }
 
 /**

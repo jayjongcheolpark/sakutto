@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "Saat kotak pesan berfokus, tombol あA (atau pintasan) menampilkan pratinjau terjemahan. Draf Jepang ke bahasa Inggris (atau bahasa sasaran di atas); yang lain memakai sasaran itu. Tidak ada yang diganti sampai Anda memilih Ganti."
+    "message": "Saat kotak pesan berfokus, tombol 한A (atau pintasan) menampilkan pratinjau terjemahan. Draf Korea ke bahasa Inggris (atau bahasa sasaran di atas); yang lain memakai sasaran itu. Tidak ada yang diganti sampai Anda memilih Ganti."
   },
   "composeTitle": {
     "message": "Terjemahan draf"
@@ -906,7 +906,7 @@
     }
   },
   "composeIconSetting": {
-    "message": "Tampilkan tombol あA pada kotak pesan"
+    "message": "Tampilkan tombol 한A pada kotak pesan"
   },
   "composeIconSettingHelp": {
     "message": "Pintasan dan menu klik kanan tetap bekerja jika tombol disembunyikan."
@@ -915,7 +915,7 @@
     "message": "Bahasa tujuan saat menulis"
   },
   "composeTargetAuto": {
-    "message": "Otomatis (draf Jepang ke bahasa lain dalam pasangan; selain itu ke bahasa halaman)"
+    "message": "Otomatis (draf Korea ke bahasa lain dalam pasangan; selain itu ke bahasa halaman)"
   },
   "composeTargetSettingHelp": {
     "message": "Bahasa terakhir yang dipilih di pratinjau diingat di sini."

@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "Lorsqu’une zone de message a le focus, le bouton あA (ou le raccourci) affiche un aperçu de la traduction. Les brouillons japonais vont vers l’anglais (ou vers la langue cible ci-dessus) ; les autres utilisent cette langue cible. Rien n’est remplacé tant que vous ne choisissez pas Remplacer."
+    "message": "Lorsqu’une zone de message a le focus, le bouton 한A (ou le raccourci) affiche un aperçu de la traduction. Les brouillons coréens vont vers l’anglais (ou vers la langue cible ci-dessus) ; les autres utilisent cette langue cible. Rien n’est remplacé tant que vous ne choisissez pas Remplacer."
   },
   "composeTitle": {
     "message": "Traduction du brouillon"
@@ -906,7 +906,7 @@
     }
   },
   "composeIconSetting": {
-    "message": "Afficher le bouton あA sur les zones de message"
+    "message": "Afficher le bouton 한A sur les zones de message"
   },
   "composeIconSettingHelp": {
     "message": "Le raccourci et le menu contextuel fonctionnent encore si le bouton est masqué."
@@ -915,7 +915,7 @@
     "message": "Langue cible de la rédaction"
   },
   "composeTargetAuto": {
-    "message": "Auto (les brouillons japonais vont vers l’autre langue de la paire ; sinon la langue de la page)"
+    "message": "Auto (les brouillons coréens vont vers l’autre langue de la paire ; sinon la langue de la page)"
   },
   "composeTargetSettingHelp": {
     "message": "La langue choisie dans l’aperçu est mémorisée ici."

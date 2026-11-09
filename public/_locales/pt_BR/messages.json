@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "Quando uma caixa de mensagem está em foco, o botão あA (ou o atalho) mostra uma prévia da tradução. Rascunhos em japonês vão para o inglês (ou para o idioma de destino acima); os demais usam esse destino. Nada é substituído até você escolher Substituir."
+    "message": "Quando uma caixa de mensagem está em foco, o botão 한A (ou o atalho) mostra uma prévia da tradução. Rascunhos em coreano vão para o inglês (ou para o idioma de destino acima); os demais usam esse destino. Nada é substituído até você escolher Substituir."
   },
   "composeTitle": {
     "message": "Tradução do rascunho"
@@ -906,7 +906,7 @@
     }
   },
   "composeIconSetting": {
-    "message": "Mostrar o botão あA nas caixas de mensagem"
+    "message": "Mostrar o botão 한A nas caixas de mensagem"
   },
   "composeIconSettingHelp": {
     "message": "O atalho e o menu de contexto continuam funcionando se o botão estiver oculto."
@@ -915,7 +915,7 @@
     "message": "Idioma de destino ao escrever"
   },
   "composeTargetAuto": {
-    "message": "Automático (rascunhos em japonês vão para o outro idioma do par; o resto, para o idioma da página)"
+    "message": "Automático (rascunhos em coreano vão para o outro idioma do par; o resto, para o idioma da página)"
   },
   "composeTargetSettingHelp": {
     "message": "O idioma escolhido na prévia fica lembrado aqui."

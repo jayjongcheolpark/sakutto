@@ -77,7 +77,7 @@ export type BenchTier = 'auto' | 'g' | 'c8' | 'c4';
 export function settings(tier: BenchTier = 'auto'): Record<string, unknown> {
   return {
     schemaVersion: 1,
-    targetLanguage: 'ja',
+    targetLanguage: 'ko',
     form: 'polite',
     display: 'replace',
     consent: {

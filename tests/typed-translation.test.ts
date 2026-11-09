@@ -13,13 +13,13 @@ import {
 
 describe('typed translation direction', () => {
   it('translates into the chosen target and offers the other half of the main pair', () => {
-    expect(planTypedTranslation('ja')).toEqual({
+    expect(planTypedTranslation('ko')).toEqual({
       ok: true,
       sourceLanguage: null,
-      targetLanguage: 'ja',
+      targetLanguage: 'ko',
       other: 'en',
     });
-    expect(planTypedTranslation('en').other).toBe('ja');
+    expect(planTypedTranslation('en').other).toBe('ko');
   });
 
   /**
@@ -28,22 +28,22 @@ describe('typed translation direction', () => {
    * pastes a language the picker never offered.
    */
   it('never guesses the source language', () => {
-    for (const target of ['ja', 'en', 'zh-hans', 'de'] as const) {
+    for (const target of ['ko', 'en', 'zh-hans', 'de'] as const) {
       expect(planTypedTranslation(target).sourceLanguage).toBeNull();
     }
   });
 
-  it('falls back to Japanese for a value that is not a target language', () => {
+  it('falls back to Korean for a value that is not a target language', () => {
     // The settings normalizer refuses these, so this only guards a hand-edited record.
     const plan = planTypedTranslation('xx' as never);
-    expect(plan.targetLanguage).toBe('ja');
+    expect(plan.targetLanguage).toBe('ko');
     expect(plan.other).toBe('en');
   });
 
   it('keeps other targets as themselves instead of forcing the pair', () => {
     const plan = planTypedTranslation('de');
     expect(plan.targetLanguage).toBe('de');
-    expect(plan.other).toBe('ja');
+    expect(plan.other).toBe('ko');
   });
 });
 

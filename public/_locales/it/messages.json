@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "Quando una casella di messaggio ha il focus, il pulsante あA (o la scorciatoia) mostra un’anteprima della traduzione. Le bozze in giapponese vanno in inglese (o nella lingua di destinazione sopra); le altre usano quella destinazione. Nulla viene sostituito finché non scegli Sostituisci."
+    "message": "Quando una casella di messaggio ha il focus, il pulsante 한A (o la scorciatoia) mostra un’anteprima della traduzione. Le bozze in coreano vanno in inglese (o nella lingua di destinazione sopra); le altre usano quella destinazione. Nulla viene sostituito finché non scegli Sostituisci."
   },
   "composeTitle": {
     "message": "Traduzione della bozza"
@@ -906,7 +906,7 @@
     }
   },
   "composeIconSetting": {
-    "message": "Mostra il pulsante あA sulle caselle di messaggio"
+    "message": "Mostra il pulsante 한A sulle caselle di messaggio"
   },
   "composeIconSettingHelp": {
     "message": "La scorciatoia e il menu contestuale funzionano anche se il pulsante è nascosto."
@@ -915,7 +915,7 @@
     "message": "Lingua di destinazione in scrittura"
   },
   "composeTargetAuto": {
-    "message": "Automatico (le bozze in giapponese vanno all’altra lingua della coppia; il resto alla lingua della pagina)"
+    "message": "Automatico (le bozze in coreano vanno all’altra lingua della coppia; il resto alla lingua della pagina)"
   },
   "composeTargetSettingHelp": {
     "message": "La lingua scelta nell’anteprima viene ricordata qui."

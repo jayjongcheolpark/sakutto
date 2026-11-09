@@ -122,7 +122,7 @@ export function composeEditableRoot(start: EventTarget | Node | null | undefined
 }
 
 /**
- * The あA button sits on a message box, not on a search field or a combobox. Those can still
+ * The 한A button sits on a message box, not on a search field or a combobox. Those can still
  * be translated from the shortcut or the context menu.
  */
 export function showsComposeIcon(field: Element): boolean {

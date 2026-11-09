@@ -35,6 +35,15 @@ describe('PFML3 prompt', () => {
     ).toThrow(EngineError);
   });
 
+  it('sends a Korean target without a form key', () => {
+    const prompt = buildTranslationPrompt({ text: 'Hello.', src: 'en', tgt: 'ko' });
+    expect(prompt).toContain('<|plamo:val|>ko');
+    expect(prompt).not.toContain('form');
+    expect(() => buildTranslationPrompt({ text: 'Hello.', tgt: 'ko', form: 'polite' })).toThrow(
+      EngineError,
+    );
+  });
+
   it('orders context before glossary and source language inside input', () => {
     const prompt = buildTranslationPrompt({
       text: 'Ownerでフィルタリングできます。',

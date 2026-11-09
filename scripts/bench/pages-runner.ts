@@ -326,6 +326,12 @@ async function measurePage(input: {
   const page = await harness.context.newPage();
   await page.setViewportSize(VIEWPORT);
   try {
+    // A page already in the preferred language flips and stores that target on the host.
+    // The next fixture must start from the bench target again.
+    await harness.options.evaluate(async () => {
+      const chrome = (globalThis as unknown as { chrome: ChromeApi }).chrome;
+      await chrome.storage.local.set({ siteRules: {} });
+    });
     await page.goto(`${input.origin}/${fixture.file}`, { waitUntil: 'load' });
     const timeoutMs = input.mode === 'mock' ? MOCK_TIMEOUT_MS : PAGE_TIMEOUT_MS;
     await installPageRecorder(page, timeoutMs);
