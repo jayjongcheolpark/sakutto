@@ -7,7 +7,7 @@
 [![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.gg/pdSRBaSr38)
 [![Last commit](https://img.shields.io/github/last-commit/jammaru/sakutto)](https://github.com/jammaru/sakutto/commits/main)
 
-Sakutto is an unofficial Chrome extension that translates web pages on your device. It runs [PLaMo 3 Translate](https://huggingface.co/pfnet/plamo-3-translate-0.8b-GGUF) through a pinned [wllama](https://github.com/ngxson/wllama) build. Every translated line is written by PLaMo: a page waiting for the model keeps its source text rather than showing a draft from another engine. Chrome's Translator API is used only for the language pairs PLaMo does not support. Not affiliated with Preferred Networks, Inc. Built with PLaMo.
+Sakutto is an unofficial Chrome extension that translates Korean and English web pages on your device. It runs [PLaMo 3 Translate](https://huggingface.co/pfnet/plamo-3-translate-0.8b-GGUF) through a pinned [wllama](https://github.com/ngxson/wllama) build. Every translated line is written by PLaMo: a page waiting for the model keeps its source text rather than showing a draft from another engine. Korean and English stay on that model. Not affiliated with Preferred Networks, Inc. Built with PLaMo.
 
 The extension is free and open source (MIT). It has no ads and no paid features. The model weights are not in this repository or in the extension package.
 
@@ -41,15 +41,15 @@ The same actions are in the toolbar popup and the right-click menu. Chrome keeps
 
 ## Typed text
 
-While a message box, a textarea, or another editable field is focused, Alt+T (Option+T on a Mac) or the あA button next to the field previews an on-device translation of what you are typing. Press the same shortcut again, or Ctrl+Enter (⌘+Enter on a Mac), to replace; Restore original puts the draft back. The preview has a language menu, and settings can skip the preview so one shortcut press translates and replaces. Japanese drafts go to English (or to your saved target if that is not Japanese); other drafts use the saved target, until you pick another language. Password fields and sites set to never translate are left alone. You can hide the あA button in settings. If Chrome leaves a command unbound, the default key still works on pages unless you turn that shortcut off in Sakutto. The same PLaMo model as page translation is used; the built-in translator is not.
+While a message box, a textarea, or another editable field is focused, Alt+T (Option+T on a Mac) or the 한A button next to the field previews an on-device translation of what you are typing. Press the same shortcut again, or Ctrl+Enter (⌘+Enter on a Mac), to replace; Restore original puts the draft back. The preview has a language menu, and settings can skip the preview so one shortcut press translates and replaces. Korean drafts go to English (or to your saved target if that is not Korean); other drafts use the saved target, until you pick another language. Password fields and sites set to never translate are left alone. You can hide the 한A button in settings. If Chrome leaves a command unbound, the default key still works on pages unless you turn that shortcut off in Sakutto. The same PLaMo model as page translation is used; the built-in translator is not.
 
 The popup has a **Translate typed text** button, and the options page has the same button. It opens a small extension page with a source box and a result box, so you can type or paste a paragraph and translate it without touching a page. It uses the same PLaMo model, the same licence consent, and the same load flow as page translation, and the direction follows the same target-language setting. The built-in translator is not used there: typed text is translated by PLaMo only, and a language PLaMo does not support is refused in the page rather than quietly handed to Chrome. The result has a Copy button.
 
 ## Languages
 
-PLaMo 3 Translate supports 53 languages in either direction. The source language is detected from the page. The default target language is the browser UI language, or English when that language is not one of the 53. The popup can set a different target language for the current site.
+This fork translates Korean and English. The source language is detected from the page. The default target is Korean when the browser UI is Korean, and English otherwise. When the page is already in that language, the target flips to the other side of the pair. The popup can set Korean or English for the current site.
 
-Eleven further languages (cs, da, el, fi, kn, no, pt, ro, sv, tr, uk) are translated only by Chrome's built-in translator. Languages that PLaMo supports and Chrome does not stay untranslated until the model is ready.
+PLaMo 3 Translate can translate 53 languages. Settings offer Korean and English only, so a page in another language is still translated into one of those two. Chrome's built-in translator is not used for Korean or English.
 
 The interface itself is translated into 14 languages: English, Japanese, Korean, Chinese (Simplified and Traditional), Spanish, Portuguese (Brazil), French, German, Italian, Russian, Vietnamese, Thai, and Indonesian. Chrome picks the catalog that matches the browser UI language and falls back to English. To add one, see [docs/TRANSLATING.md](docs/TRANSLATING.md).
 
@@ -81,7 +81,7 @@ pnpm test:e2e       # local fixtures; does not download the model
 
 `pnpm bench` loads the built extension in headless Chromium (Playwright's Chrome for Testing build, because branded Chrome refuses `--load-extension`) and translates four fixed local pages with the real 0.8B model: a long article, a news article, a docs page, and a client-rendered page. It also runs a short engine probe for time to first token and output speed. Pass `--pages-only`, `--engine-only`, or `--sweep` (thread, context, and batch sizes). The model is cached under `bench/.cache/` after a SHA-256 check. Build with `SAKUTTO_E2E_REAL=1 pnpm build` first so the harness can script the local pages. Results are written to `bench/results/`.
 
-`pnpm bench:mock` and `pnpm bench:live` measure whole pages the way a reader experiences them, on eight fixtures in [bench/pages](bench/pages) that each isolate a different cost (a long article, a short lead with a long tail, many short cards, one very long paragraph, a sidebar, mixed UI, a headline inside the article header, and late-mounted content). Every run appends to `bench/history/pages.jsonl`, so a later commit can be diffed against an earlier one on the same pages. `pnpm bench:serve` opens those fixtures in your own browser. See [bench/README.md](bench/README.md) for the metrics, the mock-versus-live distinction, and how to add a fixture.
+`pnpm bench:mock` and `pnpm bench:live` measure whole pages the way a reader experiences them, on nine fixtures in [bench/pages](bench/pages) that each isolate a different cost (a long article, a short lead with a long tail, many short cards, one very long paragraph, a sidebar, mixed UI, a headline inside the article header, a Korean article aimed at English, and late-mounted content). The eight English pages are aimed at Korean. A new live timing is not comparable with the older English-to-Japanese rows. Every run appends to `bench/history/pages.jsonl`, so a later commit can be diffed against an earlier one on the same pages. `pnpm bench:serve` opens those fixtures in your own browser. See [bench/README.md](bench/README.md) for the metrics, the mock-versus-live distinction, and how to add a fixture.
 
 `pnpm icons` regenerates the PNG icons from `scripts/generate-icons.mjs`.
 
@@ -129,4 +129,4 @@ Open an [Issue](https://github.com/jammaru/sakutto/issues) first, then a pull re
 - llama.cpp, wllama, the Emscripten runtime, the Dawn WebGPU library, and Svelte: see [NOTICE](NOTICE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 - `scripts/bench/fixtures/kyoto.html` is a CC BY-SA 4.0 Wikipedia derivative. It is not covered by the MIT license and is not part of the extension package.
 
-Japanese documentation: [README.ja.md](README.ja.md).
+Korean documentation: [README.ko.md](README.ko.md). Japanese documentation: [README.ja.md](README.ja.md).

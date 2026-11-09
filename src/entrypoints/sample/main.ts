@@ -32,7 +32,7 @@ function overlayLabels(): OverlayLabels {
 }
 
 function showSample(targetLanguage: string): void {
-  const language = targetLanguage === 'en' ? 'ja' : 'en';
+  const language = targetLanguage === 'en' ? 'ko' : 'en';
   document.documentElement.lang = language;
   for (const article of document.querySelectorAll('article[data-sample]')) {
     if (article.getAttribute('data-sample') === language) article.removeAttribute('hidden');

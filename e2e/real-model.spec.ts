@@ -10,7 +10,7 @@ test('translates with the local PLaMo model', async () => {
 
   const extension = await loadExtension('en-US');
   try {
-    await resetExtensionStorage(extension.worker);
+    await resetExtensionStorage(extension.worker, 'ko');
     const page = await extension.context.newPage();
     await page.goto(`${FIXTURE_ORIGIN}/article.html`);
     await commandPage(extension.worker, page, 'toggle');

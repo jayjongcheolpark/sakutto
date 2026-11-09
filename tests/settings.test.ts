@@ -36,8 +36,10 @@ function stored(overrides: Partial<Settings> = {}): Settings {
 }
 
 describe('settings defaults', () => {
-  it('uses the UI language with polite form and replacement display', () => {
-    expect(createDefaultSettings('fr-FR')).toEqual(stored({ targetLanguage: 'fr' }));
+  it('uses Korean for a Korean UI and English for every other UI', () => {
+    expect(createDefaultSettings('ko-KR')).toEqual(stored({ targetLanguage: 'ko' }));
+    expect(createDefaultSettings('fr-FR')).toEqual(stored({ targetLanguage: 'en' }));
+    expect(createDefaultSettings('ja-JP').targetLanguage).toBe('en');
     expect(DEFAULT_SETTINGS.targetLanguage).toBe('en');
   });
 
@@ -188,7 +190,8 @@ describe('settings defaults', () => {
       ),
     ).toEqual(createDefaultSettings('ja-JP'));
 
-    expect(normalizeSettings({ targetLanguage: 'ko' }, 'ja-JP').targetLanguage).toBe('ja');
+    expect(normalizeSettings({ targetLanguage: 'ko' }, 'ja-JP').targetLanguage).toBe('en');
+    expect(normalizeSettings({ targetLanguage: 'en' }, 'ko-KR').targetLanguage).toBe('ko');
   });
 
   it('drops consent that does not name the bundled license text', () => {

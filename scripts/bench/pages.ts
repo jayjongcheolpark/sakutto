@@ -53,6 +53,12 @@ export const BENCH_PAGES: readonly BenchPage[] = [
       "A news-style post whose headline sits in the article's own <header>, under a sticky top bar and beside a metadata list. Isolates whether the title and the first paragraphs fill the first screen before labels and the rest of the body.",
   },
   {
+    name: 'korean-article',
+    file: 'korean-article.html',
+    stresses:
+      'A short Korean article aimed at English. Isolates the product pair in the other direction from the English pages, which stay aimed at Korean.',
+  },
+  {
     name: 'late-mount-spa',
     file: 'late-mount-spa.html',
     stresses:

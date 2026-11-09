@@ -90,11 +90,12 @@ async function warmup(runtime: LlamaRuntime, tgt: string): Promise<void> {
   const timer = setTimeout(() => controller.abort(), WARMUP_TIMEOUT_MS);
 
   try {
-    const language = canonicalLanguage(tgt) ?? 'ja';
+    const language = canonicalLanguage(tgt) ?? 'ko';
+    const warmingKorean = language === 'ko';
     await runtime.complete({
       prompt: buildTranslationPrompt({
-        text: 'Hello.',
-        src: language === 'ja' ? 'en' : 'ja',
+        text: warmingKorean ? 'Hello.' : '안녕하세요.',
+        src: warmingKorean ? 'en' : 'ko',
         tgt: language,
         ...(language === 'ja' ? { form: 'polite' } : {}),
       }),
@@ -390,7 +391,8 @@ export class EngineHost {
         loaded = await services.load(controller.signal);
       }
       try {
-        await warmup(loaded.runtime, 'ja');
+        const settings = await loadSettings().catch(() => null);
+        await warmup(loaded.runtime, settings?.targetLanguage ?? 'ko');
       } catch {
         // The short warm-up is optional; translation still runs.
       }
@@ -660,7 +662,7 @@ export class EngineHost {
 
       const started = performance.now();
       await loaded.runtime.complete({
-        prompt: buildTranslationPrompt({ text: QUALITY_PARAGRAPH, tgt: 'ja', form: 'polite' }),
+        prompt: buildTranslationPrompt({ text: QUALITY_PARAGRAPH, src: 'en', tgt: 'ko' }),
         maxTokens: 512,
         signal: controller.signal,
         onToken: () => undefined,

@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "Khi ô tin nhắn đang được chọn, nút あA (hoặc phím tắt) xem trước bản dịch. Bản nháp tiếng Nhật sang tiếng Anh (hoặc ngôn ngữ đích ở trên); các bản khác dùng ngôn ngữ đó. Không gì bị thay cho đến khi bạn chọn Thay thế."
+    "message": "Khi ô tin nhắn đang được chọn, nút 한A (hoặc phím tắt) xem trước bản dịch. Bản nháp tiếng Hàn sang tiếng Anh (hoặc ngôn ngữ đích ở trên); các bản khác dùng ngôn ngữ đó. Không gì bị thay cho đến khi bạn chọn Thay thế."
   },
   "composeTitle": {
     "message": "Bản dịch bản nháp"
@@ -906,7 +906,7 @@
     }
   },
   "composeIconSetting": {
-    "message": "Hiện nút あA trên ô tin nhắn"
+    "message": "Hiện nút 한A trên ô tin nhắn"
   },
   "composeIconSettingHelp": {
     "message": "Phím tắt và menu chuột phải vẫn hoạt động khi nút bị ẩn."
@@ -915,7 +915,7 @@
     "message": "Ngôn ngữ đích khi soạn"
   },
   "composeTargetAuto": {
-    "message": "Tự động (bản nháp tiếng Nhật sang ngôn ngữ kia của cặp; còn lại theo ngôn ngữ trang)"
+    "message": "Tự động (bản nháp tiếng Hàn sang ngôn ngữ kia của cặp; còn lại theo ngôn ngữ trang)"
   },
   "composeTargetSettingHelp": {
     "message": "Ngôn ngữ vừa chọn trong bản xem trước được nhớ ở đây."

@@ -84,7 +84,7 @@ export interface ComposePreferences {
   uiLanguage: string;
   showIcon: boolean;
   readiness: TypedReadiness;
-  /** True when the reader picked a compose target; skips the Japanese-draft auto-flip. */
+  /** True when the reader picked a compose target; skips the Korean-draft auto-flip. */
   explicitTarget: boolean;
   /** One shortcut press translates and replaces, without waiting for the preview button. */
   instantReplace: boolean;
@@ -386,7 +386,7 @@ interface PanelState {
   siteOverride: boolean;
 }
 
-/** Place the あA button so it does not sit on top of typed text in a short field. */
+/** Place the 한A button so it does not sit on top of typed text in a short field. */
 export function composeIconPosition(
   anchor: DOMRect,
   viewport: { width: number; height: number },
@@ -816,7 +816,7 @@ class ComposeOverlay {
     button.setAttribute('aria-haspopup', 'dialog');
     button.setAttribute('aria-label', this.labels.icon);
     button.title = this.labels.icon;
-    button.textContent = 'あA';
+    button.textContent = '한A';
     const keepFocus = (event: Event): void => {
       event.preventDefault();
       event.stopPropagation();

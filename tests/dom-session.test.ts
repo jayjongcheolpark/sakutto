@@ -1258,8 +1258,8 @@ describe('page session', () => {
     await session.translate();
     await session.whenIdle();
 
-    expect(patches).toEqual(['ja']);
-    expect(document.documentElement.lang).toBe('ja');
+    expect(patches).toEqual(['ko']);
+    expect(document.documentElement.lang).toBe('ko');
     expect(document.body.textContent).toContain('訳:Hello world');
 
     session.restore();
@@ -1684,7 +1684,7 @@ describe('page translation corrections', () => {
     await session.whenIdle();
 
     expect(session.state().pageLanguage).toBe('en');
-    expect(session.state().targetLanguage).toBe('ja');
+    expect(session.state().targetLanguage).toBe('ko');
   });
 
   it('shows the original heading in bilingual mode and leaves body copy alone', async () => {

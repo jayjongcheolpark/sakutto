@@ -30,7 +30,7 @@ describe('bench fixtures', () => {
       // Every fixture is a standalone document with no network dependency, so it can be
       // opened from disk or served by any static server.
       expect(html).toContain('<!doctype html>');
-      expect(html).toContain('<html lang="en"');
+      expect(html).toContain(`<html lang="${page.file === 'korean-article.html' ? 'ko' : 'en'}"`);
       expect(html).not.toMatch(/<script[^>]+src=/u);
       expect(html).not.toMatch(/<link[^>]+href="http/u);
 

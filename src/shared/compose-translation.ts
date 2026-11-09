@@ -6,7 +6,7 @@ export type ComposePlan = {
   ok: boolean;
   sourceLanguage: string | null;
   targetLanguage: TargetLanguage;
-  /** The other side of the ja ↔ preferred pair, for the swap control. */
+  /** The other side of the ko ↔ preferred pair, for the swap control. */
   other: TargetLanguage;
 };
 
@@ -18,22 +18,22 @@ export type ComposePlan = {
 export const COMPOSE_PREVIEW_MS = 700;
 
 /**
- * The other half of the pair a compose request can flip to. Japanese is one side; the
- * reader's saved target (or English, when that target is already Japanese) is the other.
+ * The other half of the pair a compose request can flip to. Korean is one side; the
+ * reader's saved target (or English, when that target is already Korean) is the other.
  */
 export function composePairOther(
   current: TargetLanguage,
   preferred: TargetLanguage,
 ): TargetLanguage {
-  if (current === 'ja') return preferred === 'ja' ? 'en' : preferred;
-  return 'ja';
+  if (current === 'ko') return preferred === 'ko' ? 'en' : preferred;
+  return 'ko';
 }
 
 /**
  * True when the draft already reads as the chosen target, so translating into that target
  * would be a no-op. Only scripts `inferLanguage` can name (kana, Hangul, Han, and the
  * other distinctive ones) count: Latin letters cover many languages, so a German draft
- * with an English target must not be treated as "already English" and sent to Japanese.
+ * with an English target must not be treated as "already English" and sent to Korean.
  */
 export function draftLooksLikeTarget(text: string, target: string): boolean {
   const inferred = inferLanguage(text);
@@ -57,7 +57,7 @@ function chooseComposeTarget(text: string, preferred: TargetLanguage): TargetLan
  * Which way a draft in a message box is translated.
  *
  * The saved target language is the default, matching the typed-text page. A draft that is
- * already in that language — Japanese when the target is Japanese, English when it is
+ * already in that language — Korean when the target is Korean, English when it is
  * English — flips to the other side of the main pair so the first request is not a no-op.
  * `swapped` inverts that choice for this field, the way the typed page's swap control does.
  * `explicit` skips the auto-flip: the preview language the reader picked is the target.

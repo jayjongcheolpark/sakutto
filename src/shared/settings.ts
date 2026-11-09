@@ -4,7 +4,7 @@ import {
   DEFAULT_TARGET_LANGUAGE,
   isChromeOnlyLanguage,
   isTargetLanguage,
-  resolveTargetLanguage,
+  productPairTarget,
   type TargetLanguage,
 } from './languages';
 import { isRecord } from './object';
@@ -68,7 +68,7 @@ export interface Settings {
   idleMinutes: IdleMinutes;
   tier: TierPreference;
   pace: TranslationPace;
-  /** False hides the あA button on message boxes. The shortcut and context menu stay. */
+  /** False hides the 한A button on message boxes. The shortcut and context menu stay. */
   composeIcon: boolean;
   /**
    * Per-command on/off in Sakutto. Chrome reporting a command as unbound is not an off
@@ -77,7 +77,7 @@ export interface Settings {
   shortcutsEnabled: ShortcutEnabled;
   /**
    * When set, compose translation always uses this target. `null` keeps the heuristic:
-   * Japanese drafts go to the other side of the pair, everything else to the page target.
+   * Korean drafts go to the other side of the pair, everything else to the page target.
    */
   composeTargetLanguage: TargetLanguage | null;
   /** One shortcut press translates and replaces, skipping the preview confirmation. */
@@ -130,7 +130,7 @@ export function createDefaultSettings(uiLanguage: string): Settings {
     ...DEFAULT_SETTINGS,
     glossary: [],
     shortcutsEnabled: defaultShortcutEnabled(),
-    targetLanguage: resolveTargetLanguage(uiLanguage),
+    targetLanguage: productPairTarget(uiLanguage),
   };
 }
 

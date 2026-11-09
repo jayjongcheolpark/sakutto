@@ -29,7 +29,7 @@ export function enginePage(): string {
 
       function prompt(text, src, tgt) {
         const source = src || 'en';
-        const target = tgt || 'ja';
+        const target = tgt || 'ko';
         let body =
           TAG + 'dataset' + MSG + 'translation' +
           TAG + 'input' + KEY + 'lang' + VAL + source + MSG + text +

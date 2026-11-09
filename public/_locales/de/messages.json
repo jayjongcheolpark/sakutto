@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "Wenn ein Nachrichtenfeld den Fokus hat, zeigt die あA-Schaltfläche (oder das Tastenkürzel) eine Vorschau der Übersetzung. Japanische Entwürfe gehen ins Englische (oder in die Zielsprache oben); andere Entwürfe nutzen diese Zielsprache. Nichts wird ersetzt, bis Sie „Ersetzen“ wählen."
+    "message": "Wenn ein Nachrichtenfeld den Fokus hat, zeigt die 한A-Schaltfläche (oder das Tastenkürzel) eine Vorschau der Übersetzung. Koreanische Entwürfe gehen ins Englische (oder in die Zielsprache oben); andere Entwürfe nutzen diese Zielsprache. Nichts wird ersetzt, bis Sie „Ersetzen“ wählen."
   },
   "composeTitle": {
     "message": "Übersetzung des Entwurfs"
@@ -906,7 +906,7 @@
     }
   },
   "composeIconSetting": {
-    "message": "Die あA-Schaltfläche in Nachrichtenfeldern anzeigen"
+    "message": "Die 한A-Schaltfläche in Nachrichtenfeldern anzeigen"
   },
   "composeIconSettingHelp": {
     "message": "Tastenkürzel und Rechtsklickmenü funktionieren weiterhin, wenn die Schaltfläche ausgeblendet ist."
@@ -915,7 +915,7 @@
     "message": "Zielsprache für Entwürfe"
   },
   "composeTargetAuto": {
-    "message": "Automatisch (japanische Entwürfe in die andere Sprache des Paars, sonst die Seitensprache)"
+    "message": "Automatisch (koreanische Entwürfe in die andere Sprache des Paars, sonst die Seitensprache)"
   },
   "composeTargetSettingHelp": {
     "message": "Die zuletzt im Vorschaufenster gewählte Sprache wird hier gespeichert."

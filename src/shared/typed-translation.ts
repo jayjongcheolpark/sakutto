@@ -1,7 +1,7 @@
 import { MAX_SEGMENT_TEXT } from '@/engine/offscreen/protocol';
 import { isChromeOnlyLanguage, isTargetLanguage, type TargetLanguage } from './languages';
 
-export type TypedDirection = 'to-ja' | 'to-other';
+export type TypedDirection = 'to-ko' | 'to-other';
 
 export interface TypedPlan {
   /** False when the direction cannot be decided from the chosen target. */
@@ -12,13 +12,13 @@ export interface TypedPlan {
   other: TargetLanguage;
 }
 
-/** The pair the product is built around: Japanese and everything else it translates. */
-export const PRIMARY_PAIR_TARGET: TargetLanguage = 'ja';
+/** The pair the product is built around: Korean and English. */
+export const PRIMARY_PAIR_TARGET: TargetLanguage = 'ko';
 
 /**
  * Which way a typed input is translated. The app's target language is the direction: a
- * reader whose UI target is Japanese is typing English (or any other language) and wants
- * Japanese, and one whose target is English is typing Japanese and wants English.
+ * reader whose UI target is Korean is typing English (or any other language) and wants
+ * Korean, and one whose target is English is typing Korean and wants English.
  *
  * The source is left unset on purpose. PLaMo translates a paragraph without being told
  * which language it is in, and guessing here would be a second place to be wrong when a
@@ -30,7 +30,7 @@ export function planTypedTranslation(targetLanguage: TargetLanguage): TypedPlan 
     ok: true,
     sourceLanguage: null,
     targetLanguage: target,
-    other: target === 'ja' ? 'en' : 'ja',
+    other: target === 'ko' ? 'en' : 'ko',
   };
 }
 

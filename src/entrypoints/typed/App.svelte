@@ -25,6 +25,7 @@
     copyTranslation,
     isTranslateShortcut,
     normalizeTypedInput,
+    PRIMARY_PAIR_TARGET,
     planTypedTranslation,
     typedReadiness,
     type TypedReadiness,
@@ -45,7 +46,7 @@
   let downloadFailed = $state(false);
   let abortController = $state<AbortController | null>(null);
 
-  let targetLanguage = $derived<TargetLanguage>(settings?.targetLanguage ?? 'ja');
+  let targetLanguage = $derived<TargetLanguage>(settings?.targetLanguage ?? PRIMARY_PAIR_TARGET);
   let plan = $derived(planTypedTranslation(targetLanguage));
   let trimmed = $derived(normalizeTypedInput(sourceText));
   let tooLong = $derived(trimmed.length > MAX_TYPED_CHARS);

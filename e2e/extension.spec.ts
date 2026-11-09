@@ -81,9 +81,9 @@ test.describe('built extension', () => {
     const extension = await loadExtension('ja');
     try {
       const page = await extension.context.newPage();
-      await page.goto(`chrome-extension://${extension.extensionId}/sample.html?to=ja`);
-      await expect(page.locator('article h1')).toContainText('§ja§Morning at the station');
-      await expect(page.locator('article[data-sample="ja"]')).toHaveCount(0);
+      await page.goto(`chrome-extension://${extension.extensionId}/sample.html?to=ko`);
+      await expect(page.locator('article h1')).toContainText('§ko§Morning at the station');
+      await expect(page.locator('article[data-sample="ko"]')).toHaveCount(0);
       await page.close();
     } finally {
       await extension.close();

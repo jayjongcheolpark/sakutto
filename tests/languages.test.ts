@@ -72,20 +72,21 @@ describe('Chrome translator languages', () => {
 });
 
 describe('default target language', () => {
-  it('picks another language when the page already matches the preference', () => {
-    expect(chooseTargetLanguage('en', 'en', false)).toBe('ja');
-    expect(chooseTargetLanguage('en-US', 'en', false)).toBe('ja');
-    expect(chooseTargetLanguage('ja', 'ja', false)).toBe('en');
-    expect(chooseTargetLanguage('ja', 'en', false)).toBe('en');
+  it('flips Korean and English when the page already matches the preference', () => {
+    expect(chooseTargetLanguage('en', 'en', false)).toBe('ko');
+    expect(chooseTargetLanguage('en-US', 'en', false)).toBe('ko');
+    expect(chooseTargetLanguage('ko', 'ko', false)).toBe('en');
+    expect(chooseTargetLanguage('ko', 'en', false)).toBe('en');
     expect(chooseTargetLanguage('en', 'de', false)).toBe('de');
+    expect(chooseTargetLanguage('de', 'de', false)).toBe('ko');
     expect(chooseTargetLanguage('en', 'en', true)).toBe('en');
     expect(chooseTargetLanguage(null, 'en', false)).toBe('en');
   });
 
-  it('shows Japanese for an English page unless the site chose a language', () => {
-    expect(resolvePageTarget('en', 'en', false)).toBe('ja');
-    expect(resolvePageTarget('en', 'ja', false)).toBe('ja');
-    expect(resolvePageTarget('ja', 'ja', false)).toBe('en');
+  it('shows Korean for an English page unless the site chose a language', () => {
+    expect(resolvePageTarget('en', 'en', false)).toBe('ko');
+    expect(resolvePageTarget('en', 'ko', false)).toBe('ko');
+    expect(resolvePageTarget('ko', 'ko', false)).toBe('en');
     expect(resolvePageTarget(null, 'en', false)).toBe('en');
     expect(resolvePageTarget('en', 'pt', true)).toBe('pt');
     expect(resolvePageTarget('en', 'en', true)).toBe('en');

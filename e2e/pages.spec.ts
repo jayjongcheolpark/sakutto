@@ -79,6 +79,19 @@ test.describe('in-page translation', () => {
     }
   });
 
+  test('translates a Korean page into English with the PLaMo engine', async () => {
+    const page = await openFixture('/korean.html');
+    try {
+      await expect(page.locator('#lead')).toHaveAttribute('data-sakutto-engine', 'plamo');
+      await expect(page.locator('#lead')).toContainText(
+        `${MARKER}오늘 하늘이 맑고 바람이 잔잔합니다.`,
+      );
+      await expect(page.locator('[data-sakutto-engine="chrome"]')).toHaveCount(0);
+    } finally {
+      await page.close();
+    }
+  });
+
   test('translates an article, keeps links, and restores the original text', async () => {
     const page = await openFixture('/article.html');
     try {
@@ -170,11 +183,11 @@ test.describe('in-page translation', () => {
   test('translates a Wikipedia-like article without leaking markup', async () => {
     const page = await openFixture('/wiki.html');
     try {
-      await expect(page.locator('#lead')).toContainText('§ja§');
+      await expect(page.locator('#lead')).toContainText('§ko§');
       await expect(page.locator('#lead .IPA')).toHaveText('oːsaka');
       await expect(page.locator('#lead sup')).toHaveText('[1]');
       await expect(page.locator('#lead a')).toHaveAttribute('href', '/wiki/Designated_city');
-      await expect(page.locator('#mixed')).toContainText('§ja§');
+      await expect(page.locator('#mixed')).toContainText('§ko§');
       await expect(page.locator('#mixed')).toContainText('大坂');
       const universities = await page.locator('#universities').innerText();
       expect(universities.indexOf('Osaka University')).toBeLessThan(universities.indexOf(','));
@@ -182,7 +195,7 @@ test.describe('in-page translation', () => {
         universities.indexOf('Osaka Metropolitan University'),
       );
       expect(await page.locator('body').innerHTML()).not.toMatch(/<i\d/);
-      await expect(page.locator('html')).toHaveAttribute('lang', 'ja');
+      await expect(page.locator('html')).toHaveAttribute('lang', 'ko');
       await expect(page.locator('html')).toHaveAttribute('data-sakutto-progress', /^\d+\/\d+$/);
 
       const raw = await page.evaluate(
@@ -193,14 +206,14 @@ test.describe('in-page translation', () => {
       expect((perf.firstTextAt ?? 0) - perf.startedAt).toBeLessThan(2000);
 
       await commandPage(extension.worker, page, 'bilingual');
-      await expect(page.locator('#lead sakutto-line')).toContainText('§ja§');
+      await expect(page.locator('#lead sakutto-line')).toContainText('§ko§');
       await expect(page.locator('nav sakutto-line')).toHaveCount(0);
       await expect(page.locator('aside sakutto-line')).toHaveCount(0);
 
       await commandPage(extension.worker, page, 'restore');
       await expect(page.locator('html')).toHaveAttribute('lang', 'en');
       await expect(page.locator('#lead')).toContainText('designated city');
-      await expect(page.locator('#lead')).not.toContainText('§ja§');
+      await expect(page.locator('#lead')).not.toContainText('§ko§');
     } finally {
       await page.close();
     }
@@ -260,8 +273,8 @@ test.describe('in-page translation', () => {
       );
 
       // Row text is PLaMo's, and no row was stamped as a Chrome translation. The fixture is
-      // English, so the target adjusts to Japanese and PLaMo's fake marker is `§ja§`.
-      await expect(page.locator('#rows > li').first()).toContainText('§ja§');
+      // English, so the target adjusts to Korean and PLaMo's fake marker is `§ko§`.
+      await expect(page.locator('#rows > li').first()).toContainText('§ko§');
       await expect(page.locator('[data-sakutto-engine="chrome"]')).toHaveCount(0);
       await expect(page.locator('sakutto-note')).toHaveCount(0);
       await expect(page.locator('html')).toHaveAttribute('data-sakutto-state', 'translated');

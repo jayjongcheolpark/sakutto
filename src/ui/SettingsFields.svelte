@@ -3,7 +3,7 @@
   import {
     displayLanguage,
     isTargetLanguage,
-    SUPPORTED_LANGUAGES,
+    PRODUCT_PAIR_LANGUAGES,
     type TargetLanguage,
   } from '@/shared/languages';
   import {
@@ -112,7 +112,7 @@
     <span>{t('composeTargetSetting')}</span>
     <select value={settings.composeTargetLanguage ?? ''} onchange={updateComposeTarget}>
       <option value="">{t('composeTargetAuto')}</option>
-      {#each SUPPORTED_LANGUAGES as language (language)}
+      {#each PRODUCT_PAIR_LANGUAGES as language (language)}
         <option value={language}>{displayLanguage(language, uiLanguage)}</option>
       {/each}
     </select>

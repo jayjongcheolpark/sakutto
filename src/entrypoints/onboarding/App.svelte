@@ -5,7 +5,7 @@
   import type { ModelStatus } from '@/shared/engine-status';
   import { agreementFromStorage } from '@/shared/agreement';
   import { currentUiLanguage, t } from '@/shared/i18n';
-  import { resolveTargetLanguage, type TargetLanguage } from '@/shared/languages';
+  import { productPairTarget, type TargetLanguage } from '@/shared/languages';
   import {
     isModelProgressMessage,
     requestModelCancel,
@@ -52,7 +52,7 @@
 
   type Phase = OnboardingPhase;
 
-  let targetLanguage = $state<TargetLanguage>(resolveTargetLanguage(currentUiLanguage()));
+  let targetLanguage = $state<TargetLanguage>(productPairTarget(currentUiLanguage()));
   let startRequested = $state(false);
   let consentSaved = $state(false);
   /**
@@ -163,7 +163,7 @@
     startRequested = true;
     if (!alreadyReady) phase = 'downloading';
 
-    const source = targetLanguage === 'en' ? 'ja' : 'en';
+    const source = targetLanguage === 'en' ? 'ko' : 'en';
     const pack = prepareTranslatorPack(source, targetLanguage);
 
     try {
