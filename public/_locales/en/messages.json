@@ -754,7 +754,7 @@
     }
   },
   "typedDirectionHint": {
-    "message": "Translates into $LANGUAGE$. Other languages are detected automatically.",
+    "message": "Translates into $LANGUAGE$. The source language is detected automatically.",
     "placeholders": {
       "language": {
         "content": "$1"
@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "While a message box is focused, the 한A button (or the shortcut) previews a translation of what you are typing. Korean drafts go to English (or to the target language above); other drafts use that target. Nothing is replaced until you choose Replace."
+    "message": "While a message box is focused, the 한A button (or the shortcut) previews a translation of what you are typing. Drafts in any language use the target above, which is Korean by default. Korean drafts go to English when that target is Korean. Nothing is replaced until you choose Replace."
   },
   "composeTitle": {
     "message": "Draft translation"
@@ -915,7 +915,7 @@
     "message": "Draft translation target"
   },
   "composeTargetAuto": {
-    "message": "Auto (Korean drafts go to the other language of the pair; otherwise the page target)"
+    "message": "Auto (any language uses the page target; Korean goes to English when that target is Korean)"
   },
   "composeTargetSettingHelp": {
     "message": "The language you last picked in the compose preview is remembered here."

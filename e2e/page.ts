@@ -2,7 +2,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import type { Page, Worker } from '@playwright/test';
 
 export const FIXTURE_ORIGIN = 'http://127.0.0.1:4173';
-export const MARKER = '§en§';
+export const MARKER = '§ko§';
 
 interface ExtensionChrome {
   tabs: {
@@ -20,7 +20,7 @@ interface ExtensionChrome {
   };
 }
 
-export async function resetExtensionStorage(worker: Worker, targetLanguage = 'en'): Promise<void> {
+export async function resetExtensionStorage(worker: Worker, targetLanguage = 'ko'): Promise<void> {
   await worker.evaluate(async (language) => {
     const chrome = (globalThis as unknown as { chrome: ExtensionChrome }).chrome;
     await chrome.storage.local.set({

@@ -754,7 +754,7 @@
     }
   },
   "typedDirectionHint": {
-    "message": "Se traduce a $LANGUAGE$. Se detectan otros idiomas automáticamente.",
+    "message": "Traduce al $LANGUAGE$. El idioma de origen se detecta automáticamente.",
     "placeholders": {
       "language": {
         "content": "$1"
@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "Cuando un cuadro de mensaje tiene el foco, el botón 한A (o el atajo) muestra una vista previa de la traducción. Los borradores en coreano van al inglés (o al idioma de destino de arriba); los demás usan ese destino. Nada se reemplaza hasta que elijas Reemplazar."
+    "message": "Cuando un cuadro de mensaje tiene el foco, el botón 한A (o el atajo) muestra una vista previa de la traducción. Los borradores en cualquier idioma usan el destino de arriba; el predeterminado es el coreano. Los borradores en coreano van al inglés cuando ese destino es coreano. Nada se reemplaza hasta que elijas Reemplazar."
   },
   "composeTitle": {
     "message": "Traducción del borrador"
@@ -915,7 +915,7 @@
     "message": "Idioma de destino al redactar"
   },
   "composeTargetAuto": {
-    "message": "Automático (los borradores en coreano van al otro idioma del par; el resto, al idioma de la página)"
+    "message": "Automático (cualquier idioma usa el destino de la página; el coreano va al inglés si ese destino es coreano)"
   },
   "composeTargetSettingHelp": {
     "message": "El idioma que elija en la vista previa se recuerda aquí."

@@ -754,7 +754,7 @@
     }
   },
   "typedDirectionHint": {
-    "message": "Diterjemahkan ke $LANGUAGE$. Bahasa lain dideteksi secara otomatis.",
+    "message": "Diterjemahkan ke $LANGUAGE$. Bahasa sumber terdeteksi secara otomatis.",
     "placeholders": {
       "language": {
         "content": "$1"
@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "Saat kotak pesan berfokus, tombol 한A (atau pintasan) menampilkan pratinjau terjemahan. Draf Korea ke bahasa Inggris (atau bahasa sasaran di atas); yang lain memakai sasaran itu. Tidak ada yang diganti sampai Anda memilih Ganti."
+    "message": "Saat kotak pesan berfokus, tombol 한A (atau pintasan) menampilkan pratinjau terjemahan. Draf dalam bahasa apa pun memakai sasaran di atas; bawaan adalah bahasa Korea. Draf Korea ke bahasa Inggris jika sasaran itu bahasa Korea. Tidak ada yang diganti sampai Anda memilih Ganti."
   },
   "composeTitle": {
     "message": "Terjemahan draf"
@@ -915,7 +915,7 @@
     "message": "Bahasa tujuan saat menulis"
   },
   "composeTargetAuto": {
-    "message": "Otomatis (draf Korea ke bahasa lain dalam pasangan; selain itu ke bahasa halaman)"
+    "message": "Otomatis (bahasa apa pun memakai sasaran halaman; bahasa Korea ke bahasa Inggris jika sasaran itu bahasa Korea)"
   },
   "composeTargetSettingHelp": {
     "message": "Bahasa terakhir yang dipilih di pratinjau diingat di sini."

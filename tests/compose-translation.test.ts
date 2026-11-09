@@ -20,6 +20,13 @@ describe('compose translation direction', () => {
     expect(plan.other).toBe('ko');
   });
 
+  it('sends a Japanese draft to Korean and names the source', () => {
+    const plan = planComposeTranslation('明日の会議は十時です。', 'ko');
+    expect(plan.targetLanguage).toBe('ko');
+    expect(plan.sourceLanguage).toBe('ja');
+    expect(plan.other).toBe('en');
+  });
+
   it('sends a Latin draft to Korean when the saved target is Korean', () => {
     const plan = planComposeTranslation('See you tomorrow.', 'ko');
     expect(plan.targetLanguage).toBe('ko');

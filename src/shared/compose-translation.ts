@@ -62,9 +62,8 @@ function chooseComposeTarget(text: string, preferred: TargetLanguage): TargetLan
  * `swapped` inverts that choice for this field, the way the typed page's swap control does.
  * `explicit` skips the auto-flip: the preview language the reader picked is the target.
  *
- * The source is left unset for the engine: PLaMo does not need it, and a wrong guess here
- * would be a second place to fail. `sourceLanguage` is only the heuristic the swap and the
- * preview kicker can show.
+ * `sourceLanguage` is the script detector's name when it has one. Latin text stays unset.
+ * The engine still receives the target language either way.
  */
 export function planComposeTranslation(
   text: string,

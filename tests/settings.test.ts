@@ -17,7 +17,7 @@ import {
 function stored(overrides: Partial<Settings> = {}): Settings {
   return {
     schemaVersion: SETTINGS_SCHEMA_VERSION,
-    targetLanguage: 'en',
+    targetLanguage: 'ko',
     form: 'polite',
     display: 'replace',
     consent: null,
@@ -36,18 +36,19 @@ function stored(overrides: Partial<Settings> = {}): Settings {
 }
 
 describe('settings defaults', () => {
-  it('uses Korean for a Korean UI and English for every other UI', () => {
-    expect(createDefaultSettings('ko-KR')).toEqual(stored({ targetLanguage: 'ko' }));
-    expect(createDefaultSettings('fr-FR')).toEqual(stored({ targetLanguage: 'en' }));
-    expect(createDefaultSettings('ja-JP').targetLanguage).toBe('en');
-    expect(DEFAULT_SETTINGS.targetLanguage).toBe('en');
+  it('uses Korean for every UI language', () => {
+    expect(createDefaultSettings('ko-KR')).toEqual(stored());
+    expect(createDefaultSettings('fr-FR')).toEqual(stored());
+    expect(createDefaultSettings('ja-JP').targetLanguage).toBe('ko');
+    expect(createDefaultSettings('en-US').targetLanguage).toBe('ko');
+    expect(DEFAULT_SETTINGS.targetLanguage).toBe('ko');
   });
 
-  it('falls back to English when the UI language is not supported', () => {
-    expect(createDefaultSettings('cs-CZ').targetLanguage).toBe('en');
-    expect(createDefaultSettings('pt-BR').targetLanguage).toBe('en');
-    expect(createDefaultSettings('').targetLanguage).toBe('en');
-    expect(resolveTargetLanguage('not-a-language')).toBe('en');
+  it('falls back to Korean when the UI language is not supported', () => {
+    expect(createDefaultSettings('cs-CZ').targetLanguage).toBe('ko');
+    expect(createDefaultSettings('pt-BR').targetLanguage).toBe('ko');
+    expect(createDefaultSettings('').targetLanguage).toBe('ko');
+    expect(resolveTargetLanguage('not-a-language')).toBe('ko');
   });
 
   it('maps Chinese UI languages to the supported scripts', () => {
@@ -190,7 +191,7 @@ describe('settings defaults', () => {
       ),
     ).toEqual(createDefaultSettings('ja-JP'));
 
-    expect(normalizeSettings({ targetLanguage: 'ko' }, 'ja-JP').targetLanguage).toBe('en');
+    expect(normalizeSettings({ targetLanguage: 'en' }, 'ja-JP').targetLanguage).toBe('ko');
     expect(normalizeSettings({ targetLanguage: 'en' }, 'ko-KR').targetLanguage).toBe('ko');
   });
 
@@ -265,7 +266,7 @@ describe('settings defaults', () => {
 
     expect(settings.glossary).toEqual(glossary);
     expect(settings.glossary).toHaveLength(MAX_GLOSSARY_ENTRIES);
-    expect(settings.targetLanguage).toBe('en');
+    expect(settings.targetLanguage).toBe('ko');
   });
 
   it('keeps consent written before the age notice was renamed', () => {

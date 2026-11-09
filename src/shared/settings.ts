@@ -77,7 +77,8 @@ export interface Settings {
   shortcutsEnabled: ShortcutEnabled;
   /**
    * When set, compose translation always uses this target. `null` keeps the heuristic:
-   * Korean drafts go to the other side of the pair, everything else to the page target.
+   * text already in the page target flips to the other side, and every other language
+   * uses the page target. Korean text with a Korean target goes to English.
    */
   composeTargetLanguage: TargetLanguage | null;
   /** One shortcut press translates and replaces, skipping the preview confirmation. */

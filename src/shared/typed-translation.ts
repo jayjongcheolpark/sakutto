@@ -1,5 +1,11 @@
+import { inferLanguage } from '@/dom/detect';
 import { MAX_SEGMENT_TEXT } from '@/engine/offscreen/protocol';
-import { isChromeOnlyLanguage, isTargetLanguage, type TargetLanguage } from './languages';
+import {
+  canonicalLanguage,
+  isChromeOnlyLanguage,
+  isTargetLanguage,
+  type TargetLanguage,
+} from './languages';
 
 export type TypedDirection = 'to-ko' | 'to-other';
 
@@ -12,23 +18,44 @@ export interface TypedPlan {
   other: TargetLanguage;
 }
 
-/** The pair the product is built around: Korean and English. */
+/** The default target: Korean. English is the other side of the switch. */
 export const PRIMARY_PAIR_TARGET: TargetLanguage = 'ko';
 
 /**
- * Which way a typed input is translated. The app's target language is the direction: a
- * reader whose UI target is Korean is typing English (or any other language) and wants
- * Korean, and one whose target is English is typing Korean and wants English.
- *
- * The source is left unset on purpose. PLaMo translates a paragraph without being told
- * which language it is in, and guessing here would be a second place to be wrong when a
- * user pastes a language the picker never offered.
+ * True when the text is written in the same script as the target. Latin text is not
+ * named: the same letters cover many languages, so a German draft with an English
+ * target must not be treated as already English.
  */
-export function planTypedTranslation(targetLanguage: TargetLanguage): TypedPlan {
-  const target = isTargetLanguage(targetLanguage) ? targetLanguage : PRIMARY_PAIR_TARGET;
+function textMatchesTarget(text: string, target: string): boolean {
+  const inferred = inferLanguage(text);
+  if (!inferred) return false;
+  const canonical = canonicalLanguage(target);
+  if (!canonical) return false;
+  if (inferred === canonical) return true;
+  return inferred.startsWith('zh') && canonical.startsWith('zh');
+}
+
+/**
+ * Which way a typed input is translated. The saved target is the direction for every
+ * detected source. Text that is already in that target flips to the other side of the
+ * Korean–English switch, so Korean pasted into a Korean target goes to English.
+ *
+ * The source is sent only when the script detector names a model language. Latin text
+ * stays unset, and the target is still sent.
+ */
+export function planTypedTranslation(targetLanguage: TargetLanguage, text = ''): TypedPlan {
+  const preferred = isTargetLanguage(targetLanguage) ? targetLanguage : PRIMARY_PAIR_TARGET;
+  const detected = text.trim().length > 0 ? inferLanguage(text) : null;
+  const source = detected !== null && canonicalLanguage(detected) !== null ? detected : null;
+  const target =
+    text.trim().length > 0 && textMatchesTarget(text, preferred)
+      ? preferred === 'ko'
+        ? 'en'
+        : 'ko'
+      : preferred;
   return {
     ok: true,
-    sourceLanguage: null,
+    sourceLanguage: source,
     targetLanguage: target,
     other: target === 'ko' ? 'en' : 'ko',
   };

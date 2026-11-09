@@ -754,7 +754,7 @@
     }
   },
   "typedDirectionHint": {
-    "message": "轉換為 $LANGUAGE$。其他語言將自動偵測。",
+    "message": "翻譯為 $LANGUAGE$。來源語言會自動偵測。",
     "placeholders": {
       "language": {
         "content": "$1"
@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "訊息框處於焦點時，한A 按鈕（或快捷鍵）會預覽正在輸入內容的譯文。韓文草稿譯成英文（或上方所選目標語言）；其他草稿使用該目標語言。在選擇「取代」之前不會改動正文。"
+    "message": "訊息框處於焦點時，한A 按鈕（或快捷鍵）會預覽正在輸入內容的譯文。任何語言的草稿都使用上方的目標語言，預設是韓文。目標為韓文時，韓文草稿譯成英文。在選擇「取代」之前不會改動正文。"
   },
   "composeTitle": {
     "message": "輸入中的翻譯"
@@ -915,7 +915,7 @@
     "message": "輸入時翻譯的目標語言"
   },
   "composeTargetAuto": {
-    "message": "自動（韓語草稿譯成語言對的另一側，其餘譯成頁面目標語言）"
+    "message": "自動（任何語言都使用頁面目標語言；目標為韓文時，韓文草稿譯成英文）"
   },
   "composeTargetSettingHelp": {
     "message": "在預覽中選擇的語言會記在這裡。"

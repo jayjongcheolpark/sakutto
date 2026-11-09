@@ -754,7 +754,7 @@
     }
   },
   "typedDirectionHint": {
-    "message": "Übersetzt in $LANGUAGE$. Andere Sprachen werden automatisch erkannt.",
+    "message": "Übersetzt in $LANGUAGE$. Die Ausgangssprache wird automatisch erkannt.",
     "placeholders": {
       "language": {
         "content": "$1"
@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "Wenn ein Nachrichtenfeld den Fokus hat, zeigt die 한A-Schaltfläche (oder das Tastenkürzel) eine Vorschau der Übersetzung. Koreanische Entwürfe gehen ins Englische (oder in die Zielsprache oben); andere Entwürfe nutzen diese Zielsprache. Nichts wird ersetzt, bis Sie „Ersetzen“ wählen."
+    "message": "Wenn ein Nachrichtenfeld den Fokus hat, zeigt die 한A-Schaltfläche (oder das Tastenkürzel) eine Vorschau der Übersetzung. Entwürfe in jeder Sprache nutzen die Zielsprache oben; die Vorgabe ist Koreanisch. Koreanische Entwürfe gehen ins Englische, wenn dieses Ziel Koreanisch ist. Nichts wird ersetzt, bis Sie „Ersetzen“ wählen."
   },
   "composeTitle": {
     "message": "Übersetzung des Entwurfs"
@@ -915,7 +915,7 @@
     "message": "Zielsprache für Entwürfe"
   },
   "composeTargetAuto": {
-    "message": "Automatisch (koreanische Entwürfe in die andere Sprache des Paars, sonst die Seitensprache)"
+    "message": "Automatisch (jede Sprache nutzt die Seitensprache; Koreanisch geht ins Englische, wenn das Ziel Koreanisch ist)"
   },
   "composeTargetSettingHelp": {
     "message": "Die zuletzt im Vorschaufenster gewählte Sprache wird hier gespeichert."

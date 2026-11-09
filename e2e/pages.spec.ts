@@ -83,9 +83,7 @@ test.describe('in-page translation', () => {
     const page = await openFixture('/korean.html');
     try {
       await expect(page.locator('#lead')).toHaveAttribute('data-sakutto-engine', 'plamo');
-      await expect(page.locator('#lead')).toContainText(
-        `${MARKER}오늘 하늘이 맑고 바람이 잔잔합니다.`,
-      );
+      await expect(page.locator('#lead')).toContainText('§en§오늘 하늘이 맑고 바람이 잔잔합니다.');
       await expect(page.locator('[data-sakutto-engine="chrome"]')).toHaveCount(0);
     } finally {
       await page.close();
@@ -175,6 +173,19 @@ test.describe('in-page translation', () => {
     const page = await openFixture('/cjk.html');
     try {
       await expect(page.locator('#lead')).toContainText(`${MARKER}今天天气很好。`);
+    } finally {
+      await page.close();
+    }
+  });
+
+  test('translates a German page into Korean', async () => {
+    const page = await openFixture('/german.html');
+    try {
+      await expect(page.locator('#lead')).toHaveAttribute('data-sakutto-engine', 'plamo');
+      await expect(page.locator('#lead')).toContainText(
+        `${MARKER}Der Himmel ist klar und der Wind ist ruhig.`,
+      );
+      await expect(page.locator('[data-sakutto-engine="chrome"]')).toHaveCount(0);
     } finally {
       await page.close();
     }
@@ -272,8 +283,8 @@ test.describe('in-page translation', () => {
         gridBefore?.cells.map((cell) => cell.x),
       );
 
-      // Row text is PLaMo's, and no row was stamped as a Chrome translation. The fixture is
-      // English, so the target adjusts to Korean and PLaMo's fake marker is `§ko§`.
+      // Row text is PLaMo's, and no row was stamped as a Chrome translation. The default
+      // target is Korean, so PLaMo's fake marker is `§ko§`.
       await expect(page.locator('#rows > li').first()).toContainText('§ko§');
       await expect(page.locator('[data-sakutto-engine="chrome"]')).toHaveCount(0);
       await expect(page.locator('sakutto-note')).toHaveCount(0);

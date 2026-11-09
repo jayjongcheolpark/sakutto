@@ -754,7 +754,7 @@
     }
   },
   "typedDirectionHint": {
-    "message": "Traduz para $LANGUAGE$. Os outros idiomas são detectados automaticamente.",
+    "message": "Traduz para $LANGUAGE$. O idioma de origem é detectado automaticamente.",
     "placeholders": {
       "language": {
         "content": "$1"
@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "Quando uma caixa de mensagem está em foco, o botão 한A (ou o atalho) mostra uma prévia da tradução. Rascunhos em coreano vão para o inglês (ou para o idioma de destino acima); os demais usam esse destino. Nada é substituído até você escolher Substituir."
+    "message": "Quando uma caixa de mensagem está em foco, o botão 한A (ou o atalho) mostra uma prévia da tradução. Rascunhos em qualquer idioma usam o destino acima; o padrão é coreano. Rascunhos em coreano vão para o inglês quando esse destino é coreano. Nada é substituído até você escolher Substituir."
   },
   "composeTitle": {
     "message": "Tradução do rascunho"
@@ -915,7 +915,7 @@
     "message": "Idioma de destino ao escrever"
   },
   "composeTargetAuto": {
-    "message": "Automático (rascunhos em coreano vão para o outro idioma do par; o resto, para o idioma da página)"
+    "message": "Automático (qualquer idioma usa o destino da página; coreano vai para inglês quando esse destino é coreano)"
   },
   "composeTargetSettingHelp": {
     "message": "O idioma escolhido na prévia fica lembrado aqui."

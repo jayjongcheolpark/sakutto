@@ -19,7 +19,7 @@
   import { PLAMO_OFFICIAL_LINKS, PROJECT_LINKS } from '@/shared/plamo-license';
   import type { IdleMinutes, Settings, SettingsPatch, TierPreference } from '@/shared/settings';
   import { isIdleMinutes, isTierPreference } from '@/shared/settings';
-  import type { TargetLanguage } from '@/shared/languages';
+  import { DEFAULT_TARGET_LANGUAGE, type TargetLanguage } from '@/shared/languages';
   import { loadSettings, saveSettings, subscribeSettings } from '@/shared/storage';
   import EngineStatusView from '@/ui/EngineStatus.svelte';
   import LanguageField from '@/ui/LanguageField.svelte';
@@ -72,7 +72,7 @@
     const label = runtimeLabel({
       status: engine,
       pageSimple: false,
-      targetLanguage: settings?.targetLanguage ?? 'en',
+      targetLanguage: settings?.targetLanguage ?? DEFAULT_TARGET_LANGUAGE,
     });
     return t(label.key, label.substitutions);
   });
@@ -258,7 +258,7 @@
             <span class="site-host">{rule.host}</span>
             <div class="site-controls">
               <LanguageField
-                value={rule.targetLanguage ?? settings?.targetLanguage ?? 'en'}
+                value={rule.targetLanguage ?? settings?.targetLanguage ?? DEFAULT_TARGET_LANGUAGE}
                 {uiLanguage}
                 onChange={(language: TargetLanguage) => {
                   void patchSite(rule.host, { targetLanguage: language });

@@ -754,7 +754,7 @@
     }
   },
   "typedDirectionHint": {
-    "message": "转换为 $LANGUAGE$。其他语言将自动检测。",
+    "message": "翻译为 $LANGUAGE$。源语言会自动检测。",
     "placeholders": {
       "language": {
         "content": "$1"
@@ -857,7 +857,7 @@
     }
   },
   "composeHelp": {
-    "message": "消息框处于焦点时，한A 按钮（或快捷键）会预览正在输入内容的译文。韩语草稿译成英语（或上方所选目标语言）；其他草稿使用该目标语言。在选择“替换”之前不会改动正文。"
+    "message": "消息框处于焦点时，한A 按钮（或快捷键）会预览正在输入内容的译文。任何语言的草稿都使用上方的目标语言，默认是韩语。目标为韩语时，韩语草稿译成英语。在选择“替换”之前不会改动正文。"
   },
   "composeTitle": {
     "message": "正在输入的翻译"
@@ -915,7 +915,7 @@
     "message": "输入时翻译的目标语言"
   },
   "composeTargetAuto": {
-    "message": "自动（韩语草稿译成语言对的另一侧，其余译成页面目标语言）"
+    "message": "自动（任何语言都使用页面目标语言；目标为韩语时，韩语草稿译成英语）"
   },
   "composeTargetSettingHelp": {
     "message": "在预览中选择的语言会记在这里。"

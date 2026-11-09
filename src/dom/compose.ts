@@ -1,6 +1,7 @@
 import type { GlossaryEntry, TranslateOptions } from '@/engine/types';
 import {
   canonicalLanguage,
+  DEFAULT_TARGET_LANGUAGE,
   displayLanguage,
   isTargetLanguage,
   SUPPORTED_LANGUAGES,
@@ -1869,7 +1870,9 @@ export class ComposeController {
   }
 
   private preferredTarget(): TargetLanguage {
-    return isTargetLanguage(this.prefs.targetLanguage) ? this.prefs.targetLanguage : 'en';
+    return isTargetLanguage(this.prefs.targetLanguage)
+      ? this.prefs.targetLanguage
+      : DEFAULT_TARGET_LANGUAGE;
   }
 
   private translateField(field: Element | null, source: 'auto' | 'draft' = 'auto'): void {
@@ -1923,16 +1926,24 @@ export class ComposeController {
     this.preview = '';
     this.render();
     const token = ++this.generation;
-    void this.runTranslate(trimmed, plan.targetLanguage, controller.signal, token);
+    void this.runTranslate(
+      trimmed,
+      plan.targetLanguage,
+      plan.sourceLanguage,
+      controller.signal,
+      token,
+    );
   }
 
   private async runTranslate(
     text: string,
     target: TargetLanguage,
+    source: string | null,
     signal: AbortSignal,
     token: number,
   ): Promise<void> {
     let output = '';
+    const src = source !== null && canonicalLanguage(source) !== null ? source : undefined;
     try {
       const options: TranslateOptions = {
         tgt: target,
@@ -1940,6 +1951,7 @@ export class ComposeController {
         priority: 0,
         signal,
         eager: true,
+        ...(src !== undefined ? { src } : {}),
         ...(this.prefs.glossary && this.prefs.glossary.length > 0
           ? { glossary: this.prefs.glossary }
           : {}),

@@ -17,7 +17,12 @@ import type { EngineKind, GlossaryEntry, TranslateOptions, TranslationChunk } fr
 import { mergeGlossary } from '@/shared/glossary';
 import { chooseTargetLanguage, isTargetLanguage, type TargetLanguage } from '@/shared/languages';
 import type { Formality, Settings, TranslationPace } from '@/shared/settings';
-import { canonicalPageLanguage, isAlreadyTargetLanguage, languageOf } from './detect';
+import {
+  canonicalPageLanguage,
+  inferLanguage,
+  isAlreadyTargetLanguage,
+  languageOf,
+} from './detect';
 import {
   collectDocuments,
   collectShadowRoots,
@@ -917,7 +922,7 @@ export class PageSession {
       heading: false,
       solo: true,
       kind: 'prose',
-      lang: this.detectedLanguage,
+      lang: inferLanguage(text) ?? this.detectedLanguage,
       index: 0,
       band: 'visible',
       state: 'queued',
@@ -1368,8 +1373,14 @@ export class PageSession {
     const eager = this.eagerOnce && visibleProse;
     if (eager) this.eagerOnce = false;
 
+    const selection = batch.length === 1 && batch[0]?.role === 'selection' ? batch[0] : undefined;
+    const target =
+      selection?.lang !== null && selection?.lang !== undefined
+        ? chooseTargetLanguage(selection.lang, this.prefs.targetLanguage, false)
+        : this.prefs.targetLanguage;
+
     return {
-      tgt: this.prefs.targetLanguage,
+      tgt: target,
       form: this.prefs.form,
       priority,
       signal,
